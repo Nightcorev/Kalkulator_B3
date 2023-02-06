@@ -1,5 +1,8 @@
-#ifndef date_h
-#define date_h
+#ifndef kalkulator_h
+#define kalkulator_h
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 //Pemanggilan *.h masing-masing
 
 #include "taufik.h"

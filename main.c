@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 			switch(pilih_menu){
 				case 1:
 					system("cls");
-					tambah_kurang();
+					pertambahan_kurang();
 					break;
 				case 2: 
 					system("cls");
