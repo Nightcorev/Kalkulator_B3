@@ -1,8 +1,7 @@
 #ifdef Zia_h
 #define Zia_h
-#include <stdio.h>
 
-int main(){
+void tambah_kurang(){
 	
 	char op;
 	int first, second;
@@ -23,8 +22,7 @@ int main(){
 		default:
 			printf("Error! operator is not correct");
 	}
-	
-	return 0;
 }
+
 
 #endif

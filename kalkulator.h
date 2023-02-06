@@ -6,6 +6,8 @@
 #include "ikhsan.h"
 #include "Afyar.h"
 #include "alfien.h"
+#include "Zia.h"
+#include "Fikri.h"
 
 //Deklarasi Variabel Global
 
