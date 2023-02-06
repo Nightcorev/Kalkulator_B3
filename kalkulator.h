@@ -1,8 +1,10 @@
-#ifndef taufik_h
-#define taufik_h
-
-// panggil *.h masing masing
+#ifndef date_h
+#define date_h
+//Pemanggilan *.h masing-masing
 #include "taufik.h"
+#include "ikhsan.h"
+//Deklarasi Variabel Global
 
-#endif 
+//Deklarasi Modul Utama
 
+#endif
