@@ -23,4 +23,12 @@ int perpangkatan (int x, int y){
 	return a;
 }
 
+
+
+float hitungPersentase(float angka, float persen) {
+    return angka * (persen / 100);
+}
+
+
+
 #endif
