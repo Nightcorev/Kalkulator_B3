@@ -56,18 +56,18 @@ void menu_kalkulator_konversi(){
 	printf("\n\t\t\t-------------------------------");
 }
 
-double perform_operation(double num1, double num2, char operator) {
+double perform_operation(double bilangan1, double bilangan2, char operator) {
     switch (operator) {
         case '^':
-            return pow(num1, num2);
+            return perpangkatan(bilangan1, bilangan2);
         case '*':
-            return num1 * num2;
+            return perkalian(bilangan1,bilangan2);
         case '/':
-            return num1 / num2;
+            return pembagian(bilangan1,bilangan2);
         case '+':
-            return num1 + num2;
+            return perjumlahan(bilangan1,bilangan2);
         case '-':
-            return num1 - num2;
+            return pengurangan(bilangan1,bilangan2);
         default:
             printf("Invalid operator: %c", operator);
             exit(1);
