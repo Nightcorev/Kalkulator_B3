@@ -13,6 +13,7 @@
 #include "Fikri.h"
 
 //Deklarasi Variabel Global
+#define PHI 1.6180339887
 
 //Deklarasi Modul Utama
 
