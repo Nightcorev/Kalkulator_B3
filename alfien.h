@@ -55,5 +55,6 @@ void resultKonversiWaktu(int detik, int menit, int jam)
     printf("\nJam : %d",jam);
     printf("\nMenit : %d",menit);
     printf("\nDetik : %d",detik);
+}
 
 #endif
