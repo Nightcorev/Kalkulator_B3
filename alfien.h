@@ -30,6 +30,10 @@ void resultLogarithm(double result)
 }
 
 /*Konversi Waktu*/
+struct Time {
+	int jam; int menit; int detik;
+};
+
 //input
 int inputKonversiWaktu()
 {
@@ -40,21 +44,42 @@ int inputKonversiWaktu()
 }
 
 //proses
-void processKonversiWaktu(int detik, int menit, int jam)
+struct Time processKonversiWaktu(int totalDetik)
 {
-	jam = detik / (60 * 60);
-    detik = detik - ((60 * 60) * jam);
-    menit = detik / 60;
-    detik = detik - (60 * menit);
+	struct Time T;
+  	T.jam = totalDetik / 3600;
+  	T.menit = (totalDetik % 3600) / 60;
+  	T.detik = (totalDetik % 3600) % 60;
+  	return T;
 }
 
 //output
-void resultKonversiWaktu(int detik, int menit, int jam)
+void resultKonversiWaktu(struct Time W)
 {
 	printf("Maka Waktunya Adalah : ");
-    printf("\nJam : %d",jam);
-    printf("\nMenit : %d",menit);
-    printf("\nDetik : %d",detik);
+    printf("\n%d jam, %d menit, %d detik",W.jam, W.menit, W.detik);
+}
+
+/*main*/
+int main(int argc, char *argv[]) {
+	double angka = 0, hasilLogaritma = 0, hasilLogaritmaNatural = 0;
+	int detik = 0;
+	struct Time waktu;
+	
+	//logartima
+	angka = inputLogarithm();
+	hasilLogaritma = logarithm(angka);
+	resultLogarithm(hasilLogaritma);
+	printf("\n");
+	hasilLogaritmaNatural = naturalLogarithm(angka);
+	resultLogarithm(hasilLogaritmaNatural);
+	printf("\n");
+	
+	//konversi waktu
+	detik = inputKonversiWaktu();
+	waktu = processKonversiWaktu(detik);
+	resultKonversiWaktu(waktu);
+	return 0;
 }
 
 #endif
