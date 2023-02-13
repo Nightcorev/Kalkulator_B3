@@ -1,17 +1,12 @@
 #ifndef Afyar_h
 #define Afyar_h
 
-void Judul();
+#define PHI 1.6180339887
+
 int perpangkatan (int x, int y);
+float hitungPersentase(float angka, float persen);
+double akarKuadrat(double x);
 
-#include <stdio.h>
-
-void Judul();
-int perpangkatan (int x, int y);
-
-void Judul (){
-	printf ("PROGRAM PERPANGKATAN \n\n");
-}
 
 int perpangkatan (int x, int y){
 	int i, a;
@@ -24,11 +19,13 @@ int perpangkatan (int x, int y){
 }
 
 
-
 float hitungPersentase(float angka, float persen) {
     return angka * (persen / 100);
 }
 
 
+double akarKuadrat(double x) {
+  return sqrt(x);
+}
 
 #endif
