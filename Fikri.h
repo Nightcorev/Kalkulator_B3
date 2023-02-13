@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-int kalkulatorMeter(){
+void kalkulatorMeter(){
 	int pilihan, x, y, z, nilaiSatuan, i=1, hasil, pangkat;
 	printf("=========================================================");
 	printf("\n| (0)Km | (1)Hm | (2)Dam | (3)m | (4)Dm | (5)Cm | (6)Mm |");
@@ -43,7 +43,6 @@ int kalkulatorMeter(){
 		kalkulatorMeter();
 	}
 	
-	return 0;
 }
 
 #endif
