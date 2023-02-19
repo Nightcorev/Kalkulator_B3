@@ -8,6 +8,8 @@
 
 int main(int argc, char *argv[]) {
 	int pilih_menu;
+	int detik = 0;
+	struct Time waktu;
 	char kembali;
 
 	menu_utama();
@@ -21,7 +23,7 @@ int main(int argc, char *argv[]) {
 			break;
 		case 2 :
 			menu_kalkulator_konversi();
-			printf("Pilih Menu : ");
+			printf("\n\t\t\tPilih Menu :");
 			scanf("%d",&pilih_menu);
 			switch(pilih_menu){
 				case 1:
@@ -29,6 +31,15 @@ int main(int argc, char *argv[]) {
 					kalkulatorMeter();
 					break;
 				case 2:
+					system("cls");
+					konversiSuhu();
+					break;
+				case 3:
+					detik = inputKonversiWaktu();
+					waktu = processKonversiWaktu(detik);
+					resultKonversiWaktu(waktu);
+					break;
+				case 4:
 					menu_kalkulator_konversi();
 					break;
 				default:

@@ -61,25 +61,25 @@ void resultKonversiWaktu(struct Time W)
 }
 
 /*main*/
-int main(int argc, char *argv[]) {
-	double angka = 0, hasilLogaritma = 0, hasilLogaritmaNatural = 0;
-	int detik = 0;
-	struct Time waktu;
-	
-	//logartima
-	angka = inputLogarithm();
-	hasilLogaritma = logarithm(angka);
-	resultLogarithm(hasilLogaritma);
-	printf("\n");
-	hasilLogaritmaNatural = naturalLogarithm(angka);
-	resultLogarithm(hasilLogaritmaNatural);
-	printf("\n");
-	
-	//konversi waktu
-	detik = inputKonversiWaktu();
-	waktu = processKonversiWaktu(detik);
-	resultKonversiWaktu(waktu);
-	return 0;
-}
+//int main(int argc, char *argv[]) {
+//	double angka = 0, hasilLogaritma = 0, hasilLogaritmaNatural = 0;
+//	int detik = 0;
+//	struct Time waktu;
+//	
+//	//logartima
+//	angka = inputLogarithm();
+//	hasilLogaritma = logarithm(angka);
+//	resultLogarithm(hasilLogaritma);
+//	printf("\n");
+//	hasilLogaritmaNatural = naturalLogarithm(angka);
+//	resultLogarithm(hasilLogaritmaNatural);
+//	printf("\n");
+//	
+//	//konversi waktu
+//	detik = inputKonversiWaktu();
+//	waktu = processKonversiWaktu(detik);
+//	resultKonversiWaktu(waktu);
+//	return 0;
+//}
 
 #endif
