@@ -2,6 +2,7 @@
 #define taufik_h
 #include <stdio.h>
 #include "kalkulator.h"
+#define PHI 1.6180339887
 
 //Deklarasi Modul Tampilan
 void menu_utama();
@@ -113,6 +114,9 @@ int get_priority(char opr) {
         case '+':
         case '-':
             return 1;
+        case '(':
+        case ')':
+        	return 0;
         default:
             printf("Invalid operator: %c", opr);
             exit(1);
