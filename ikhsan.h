@@ -62,7 +62,7 @@ float konversiSuhu(){
 	int opsiSuhu1,opsiSuhu2;
 	float suhu,hasilSuhu;
 	printf("Pilih suhu awal\n");
-	printf("1. Celcius\n2. Fahrenheit\n3. Reaumur\n4. Kelvin\n");
+	printf("1. Celcius\n2. Fahrenheit\n3. Reaumur\n4. Kelvin\nPilih = ");
 	scanf("%d",&opsiSuhu1);
 	printf("Masukkan suhu : ");
 	scanf("%f",&suhu);
