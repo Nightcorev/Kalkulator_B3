@@ -8,9 +8,9 @@
 const float sudutSegitiga=180.0;
 float trigonometri(double angleTrigonometri, char opsiTrigonometri);
 float konversiSuhu();
-float sinHasil(int angleTrigonometri);
-float cosHasil(int angleTrigonometri);
-float tanHasil(int angleTrigonometri);
+float sinHasil(double angleTrigonometri);
+float cosHasil(double angleTrigonometri);
+float tanHasil(double angleTrigonometri);
 float operasiSuhu(int opsiSuhu1, int opsiSuhu2, float suhu);
 
 float trigonometri(double angleTrigonometri, char opsiTrigonometri){
