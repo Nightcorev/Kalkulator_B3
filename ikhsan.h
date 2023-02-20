@@ -34,7 +34,7 @@ float trigonometri(double angleTrigonometri, char opsiTrigonometri){
 	}
 }
 
-float sinHasil(int angleTrigonometri){
+float sinHasil(double angleTrigonometri){
 	float hasilSin;
 	
 	hasilSin=(angleTrigonometri*phi)/sudutSegitiga;
@@ -42,7 +42,7 @@ float sinHasil(int angleTrigonometri){
 	return hasilSin;
 }
 
-float cosHasil(int angleTrigonometri){
+float cosHasil(double angleTrigonometri){
 	float hasilCos;
 	
 	hasilCos=(angleTrigonometri*phi)/sudutSegitiga;
@@ -50,7 +50,7 @@ float cosHasil(int angleTrigonometri){
 	return hasilCos;
 }
 
-float tanHasil(int angleTrigonometri){
+float tanHasil(double angleTrigonometri){
 	float hasilTan;
 	
 	hasilTan=(angleTrigonometri*phi)/sudutSegitiga;
