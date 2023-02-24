@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
-//#include "kalkulator.h"
 #include "taufik.h"
 #include "ikhsan.h"
 #include "Afyar.h"
