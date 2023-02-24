@@ -4,7 +4,7 @@
 #define PHI 1.6180339887
 
 int perpangkatan (int x, int y);
-float hitungPersentase(float angka, float persen);
+double hitungPersentase(double angka, double persen);
 double akarKuadrat(double x);
 
 
@@ -19,7 +19,7 @@ int perpangkatan (int x, int y){
 }
 
 
-float hitungPersentase(float angka, float persen) {
+double hitungPersentase(double angka, double persen) {
     return angka * (persen / 100);
 }
 

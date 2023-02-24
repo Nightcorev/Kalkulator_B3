@@ -1,15 +1,20 @@
 [Editors]
 <<<<<<< HEAD
-Order=0,1,4,5,3
-Focused=0
+Order=0,1,4,3
+Focused=4
 [Editor_0]
 CursorCol=13
 CursorRow=75
 TopLine=1
 LeftChar=1
 [Editor_1]
+<<<<<<< HEAD
 CursorCol=32
 CursorRow=6
+=======
+CursorCol=1
+CursorRow=1
+>>>>>>> taufik_2
 TopLine=1
 LeftChar=1
 [Editor_2]
@@ -55,7 +60,7 @@ CursorRow=27
 TopLine=1
 LeftChar=1
 [Editor_4]
-CursorCol=1
-CursorRow=21
+CursorCol=20
+CursorRow=6
 TopLine=1
 LeftChar=1
