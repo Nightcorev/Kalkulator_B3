@@ -11,6 +11,9 @@ float konversiSuhu();
 float sinHasil(double angleTrigonometri);
 float cosHasil(double angleTrigonometri);
 float tanHasil(double angleTrigonometri);
+float cosecHasil(double angleTrigonometri);
+float secHasil(double angleTrigonometri);
+float cotanHasil(double angleTrigonometri);
 float operasiSuhu(int opsiSuhu1, int opsiSuhu2, float suhu);
 
 float trigonometri(double angleTrigonometri, char opsiTrigonometri){
@@ -26,6 +29,18 @@ float trigonometri(double angleTrigonometri, char opsiTrigonometri){
 			break;
 		case 't':
 			hasilTrigonometri=tanHasil(angleTrigonometri);
+			return hasilTrigonometri;
+			break;
+		case 'o':
+			hasilTrigonometri=cosecHasil(angleTrigonometri);
+			return hasilTrigonometri;
+			break;
+		case 'e':
+			hasilTrigonometri=secHasil(angleTrigonometri);
+			return hasilTrigonometri;
+			break;
+		case 'a':
+			hasilTrigonometri=cotanHasil(angleTrigonometri);
 			return hasilTrigonometri;
 			break;
 		default:
@@ -56,6 +71,27 @@ float tanHasil(double angleTrigonometri){
 	hasilTan=(angleTrigonometri*phi)/sudutSegitiga;
 	hasilTan=tan(hasilTan);
 	return hasilTan;
+}
+
+float cosecHasil(double angleTrigonometri){
+	float hasilCosec;
+	
+	hasilCosec=1/sinHasil(angleTrigonometri);
+	return hasilCosec;
+}
+
+float secHasil(double angleTrigonometri){
+	float hasilSec;
+	
+	hasilSec=1/cosHasil(angleTrigonometri);
+	return hasilSec;
+}
+
+float cotanHasil(double angleTrigonometri){
+	float hasilCotan;
+	
+	hasilCotan=1/tanHasil(angleTrigonometri);
+	return hasilCotan;
 }
 
 float konversiSuhu(){
