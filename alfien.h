@@ -2,6 +2,13 @@
 #define alfien_H
 #include <math.h>
 
+double logarithm(double number);
+double naturalLogarithm(double number);
+int inputKonversiWaktu();
+struct Time processKonversiWaktu(int totalDetik);
+void resultKonversiWaktu(struct Time W);
+
+
 //input
 double inputLogarithm()
 {	
