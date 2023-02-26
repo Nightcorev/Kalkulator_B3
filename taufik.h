@@ -36,7 +36,6 @@ void menu_utama(){
 
 void menu_kalkulator_scientifik(){
 	system("cls");
-	printf("\n");
 	printf("\n\t\t\t------------------------------------------------------");
 	printf("\n\t\t\t|               Scientifik Kalkulator                |");
 	printf("\n\t\t\t|                   Kelompok B3                      |");
@@ -50,6 +49,7 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t| (c) = untuk operasi cosinus                        |");
 	printf("\n\t\t\t| (t) = untuk operasi tangen                         |");
 	printf("\n\t\t\t| (l) = untuk operasi logaritma                      |");
+	printf("\n\t\t\t| (p) = untuk operasi Phi                            |");
 	printf("\n\t\t\t| (nl) = untuk operasi natural logaritma             |");
 	printf("\n\t\t\t| (%%) = untuk operasi hitung persentase              |");
 	printf("\n\t\t\t|                                                    |");
@@ -58,8 +58,8 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t| 2. untuk operasi 1 bilangan seperti menghitung cos |");
 	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 90c       |");
 	printf("\n\t\t\t| 3. untuk operasi 2 bilangan pada menghitung cos dll|");
-	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 90c1+2-1  |");
-	printf("\n\t\t\t|    *angka 1 digunakan sebagai bilangan pembantu    |");
+	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 90c0+2-1  |");
+	printf("\n\t\t\t|    *angka 0 digunakan sebagai bilangan pembantu    |");
 	printf("\n\t\t\t| 4. untuk operasi menghitung persentase             |");
 	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 20%%100=20%%|");
 	printf("\n\t\t\t------------------------------------------------------");
@@ -103,7 +103,7 @@ double proses_1operasi(double bilangan1, char opr){
         case '&':
         	return akarKuadrat(bilangan1);       	
         case 'p':
-        	return bilangan1*PHI;
+        	return hitung_phi(bilangan1);
         default:
             printf("Invalid operator: %c", opr);
             exit(1);
@@ -190,7 +190,7 @@ double proses_kalkulator(){
 		            }
 		            stack_operator_top--;
 		        }else if (input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' || input_expresi[i] == 'l' || input_expresi[i] == 'n' || input_expresi[i] == '&'
-						  || input_expresi[i] == 'o'|| input_expresi[i] == 'e' || input_expresi[i] == 'a') {
+						  || input_expresi[i] == 'o'|| input_expresi[i] == 'e' || input_expresi[i] == 'a'|| input_expresi[i] == 'p') {
 				    i++;
 				    char operator = input_expresi[i - 1];
 				    double number1 = stack_number[stack_number_top--];
