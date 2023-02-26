@@ -4,7 +4,7 @@
 
 double perpangkatan (double x, double y);
 double hitungPersentase(double angka, double persen);
-double akarKuadrat(double x);
+double hitung_akar(double n, double a);
 double hitung_phi(double input);
 
 
@@ -24,8 +24,9 @@ double hitungPersentase(double angka, double persen) {
 }
 
 
-double akarKuadrat(double x) {
-  return sqrt(x);
+double hitung_akar(double n, double a) {
+   double hasil = pow(n, 1/a);
+   return hasil;
 }
 
 
