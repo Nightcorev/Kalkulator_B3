@@ -51,6 +51,7 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t| (l) = untuk operasi logaritma                      |");
 	printf("\n\t\t\t| (p) = untuk operasi Phi                            |");
 	printf("\n\t\t\t| (nl) = untuk operasi natural logaritma             |");
+	printf("\n\t\t\t| (&) = untuk operasi akar pangkat n                 |");
 	printf("\n\t\t\t| (%%) = untuk operasi hitung persentase              |");
 	printf("\n\t\t\t|                                                    |");
 	printf("\n\t\t\t| Guide :                                            |");
@@ -99,9 +100,7 @@ double proses_1operasi(double bilangan1, char opr){
         case 'l':
         	return logarithm(bilangan1);
         case 'n':
-        	return naturalLogarithm(bilangan1); 
-        case '&':
-        	return akarKuadrat(bilangan1);       	
+        	return naturalLogarithm(bilangan1);       	
         case 'p':
         	return hitung_phi(bilangan1);
         default:
@@ -123,7 +122,9 @@ double proses_operasi(double bilangan1, double bilangan2, char opr) {
         case '-':
             return pengurangan(bilangan1,bilangan2);
         case '%':
-        	return hitungPersentase(bilangan1, bilangan2);        	
+        	return hitungPersentase(bilangan1, bilangan2);   
+		case '&':
+        	return hitung_akar(bilangan1,bilangan2);      	
         default:
             printf("Invalid operator: %c", opr);
             exit(1);
@@ -189,7 +190,7 @@ double proses_kalkulator(){
 		                stack_number[++stack_number_top] = proses_operasi(number1, number2, operator);
 		            }
 		            stack_operator_top--;
-		        }else if (input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' || input_expresi[i] == 'l' || input_expresi[i] == 'n' || input_expresi[i] == '&'
+		        }else if (input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' || input_expresi[i] == 'l' || input_expresi[i] == 'n' 
 						  || input_expresi[i] == 'o'|| input_expresi[i] == 'e' || input_expresi[i] == 'a'|| input_expresi[i] == 'p') {
 				    i++;
 				    char operator = input_expresi[i - 1];
