@@ -1,11 +1,11 @@
 #ifndef Afyar_h
 #define Afyar_h
-
-#define PHI 1.6180339887
+#include <math.h>
 
 int perpangkatan (int x, int y);
 float hitungPersentase(float angka, float persen);
 double akarKuadrat(double x);
+double hitung_phi(double input);
 
 
 int perpangkatan (int x, int y){
@@ -26,6 +26,11 @@ float hitungPersentase(float angka, float persen) {
 
 double akarKuadrat(double x) {
   return sqrt(x);
+}
+
+
+double hitung_phi(double input){
+return input*M_PI;
 }
 
 #endif
