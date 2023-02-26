@@ -6,18 +6,18 @@
 #include <stdlib.h>
 
 const float sudutSegitiga=180.0;
-float trigonometri(double angleTrigonometri, char opsiTrigonometri);
+double trigonometri(double angleTrigonometri, char opsiTrigonometri);
 float konversiSuhu();
-float sinHasil(double angleTrigonometri);
-float cosHasil(double angleTrigonometri);
-float tanHasil(double angleTrigonometri);
-float cosecHasil(double angleTrigonometri);
-float secHasil(double angleTrigonometri);
-float cotanHasil(double angleTrigonometri);
+double sinHasil(double angleTrigonometri);
+double cosHasil(double angleTrigonometri);
+double tanHasil(double angleTrigonometri);
+double cosecHasil(double angleTrigonometri);
+double secHasil(double angleTrigonometri);
+double cotanHasil(double angleTrigonometri);
 float operasiSuhu(int opsiSuhu1, int opsiSuhu2, float suhu);
 
-float trigonometri(double angleTrigonometri, char opsiTrigonometri){
-	float hasilTrigonometri;
+double trigonometri(double angleTrigonometri, char opsiTrigonometri){
+	double hasilTrigonometri;
 	switch(opsiTrigonometri){
 		case 's':
 			hasilTrigonometri=sinHasil(angleTrigonometri);
@@ -49,46 +49,46 @@ float trigonometri(double angleTrigonometri, char opsiTrigonometri){
 	}
 }
 
-float sinHasil(double angleTrigonometri){
-	float hasilSin;
+double sinHasil(double angleTrigonometri){
+	double hasilSin;
 	
 	hasilSin=(angleTrigonometri*phi)/sudutSegitiga;
 	hasilSin=sin(hasilSin);
 	return hasilSin;
 }
 
-float cosHasil(double angleTrigonometri){
-	float hasilCos;
+double cosHasil(double angleTrigonometri){
+	double hasilCos;
 	
 	hasilCos=(angleTrigonometri*phi)/sudutSegitiga;
 	hasilCos=cos(hasilCos);
 	return hasilCos;
 }
 
-float tanHasil(double angleTrigonometri){
-	float hasilTan;
+double tanHasil(double angleTrigonometri){
+	double hasilTan;
 	
 	hasilTan=(angleTrigonometri*phi)/sudutSegitiga;
 	hasilTan=tan(hasilTan);
 	return hasilTan;
 }
 
-float cosecHasil(double angleTrigonometri){
-	float hasilCosec;
+double cosecHasil(double angleTrigonometri){
+	double hasilCosec;
 	
 	hasilCosec=1/sinHasil(angleTrigonometri);
 	return hasilCosec;
 }
 
-float secHasil(double angleTrigonometri){
-	float hasilSec;
+double secHasil(double angleTrigonometri){
+	double hasilSec;
 	
 	hasilSec=1/cosHasil(angleTrigonometri);
 	return hasilSec;
 }
 
-float cotanHasil(double angleTrigonometri){
-	float hasilCotan;
+double cotanHasil(double angleTrigonometri){
+	double hasilCotan;
 	
 	hasilCotan=1/tanHasil(angleTrigonometri);
 	return hasilCotan;
