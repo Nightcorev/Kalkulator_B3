@@ -43,6 +43,9 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t|----------------------------------------------------|");
 	printf("\n\t\t\t| Keterangan :                                       |");
 	printf("\n\t\t\t| (^) = untuk operasi perpangkatan                   |");
+	printf("\n\t\t\t| (o) = untuk operasi cosec                          |");
+	printf("\n\t\t\t| (e) = untuk operasi sec                            |");
+	printf("\n\t\t\t| (a) = untuk operasi cotan                          |");
 	printf("\n\t\t\t| (s) = untuk operasi sinus                          |");
 	printf("\n\t\t\t| (c) = untuk operasi cosinus                        |");
 	printf("\n\t\t\t| (t) = untuk operasi tangen                         |");
@@ -79,6 +82,34 @@ void menu_kalkulator_konversi(){
 	printf("\n\t\t\t-------------------------------");
 }
 
+double proses_1operasi(double bilangan1, char opr){
+	switch(opr){
+		case 'o':
+			return trigonometri(bilangan1,opr);
+		case 'e':
+			return trigonometri(bilangan1,opr);
+		case 'a':
+			return trigonometri(bilangan1,opr);
+	    case 's':
+        	return trigonometri(bilangan1,opr);
+        case 't':
+        	return trigonometri(bilangan1,opr);
+        case 'c':
+        	return trigonometri(bilangan1,opr);
+        case 'l':
+        	return logarithm(bilangan1);
+        case 'n':
+        	return naturalLogarithm(bilangan1); 
+        case '&':
+        	return akarKuadrat(bilangan1);       	
+        case 'p':
+        	return bilangan1*PHI;
+        default:
+            printf("Invalid operator: %c", opr);
+            exit(1);
+    }
+}
+
 double proses_operasi(double bilangan1, double bilangan2, char opr) {
     switch (opr) {
         case '^':
@@ -91,22 +122,8 @@ double proses_operasi(double bilangan1, double bilangan2, char opr) {
             return perjumlahan(bilangan1,bilangan2);
         case '-':
             return pengurangan(bilangan1,bilangan2);
-        case 's':
-        	return sinHasil(bilangan1);
-        case 't':
-        	return tanHasil(bilangan1);
-        case 'c':
-        	return cosHasil(bilangan1);
-        case 'l':
-        	return logarithm(bilangan1);
-        case 'n':
-        	return naturalLogarithm(bilangan1); 
-        case '&':
-        	return akarKuadrat(bilangan1);
         case '%':
         	return hitungPersentase(bilangan1, bilangan2);        	
-        case 'p':
-        	return bilangan1*PHI;
         default:
             printf("Invalid operator: %c", opr);
             exit(1);
@@ -120,6 +137,9 @@ int cek_prioritas(char opr) {
         case 't':
         case 'c':
         case 'l':
+        case 'o':
+		case 'e':
+		case 'a':
         case 'n':
         case '&':
         case 'p':
@@ -140,7 +160,7 @@ int cek_prioritas(char opr) {
     }
 }
 
-void proses_kalkulator(){
+double proses_kalkulator(){
 	char input_expresi[100];
     double stack_number[100];
     int stack_number_top = -1;
@@ -153,7 +173,7 @@ void proses_kalkulator(){
 		        if (isdigit(input_expresi[i])) {
 		            char number[100];
 		            int number_top = 0;
-		            while (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
+		            while (isdigit(input_expresi[i])) {
 		                number[number_top++] = input_expresi[i++];
 		            }
 		            number[number_top] = '\0';
@@ -169,11 +189,12 @@ void proses_kalkulator(){
 		                stack_number[++stack_number_top] = proses_operasi(number1, number2, operator);
 		            }
 		            stack_operator_top--;
-		        }else if (input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' || input_expresi[i] == 'l' || input_expresi[i] == 'n' || input_expresi[i] == '&') {
+		        }else if (input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' || input_expresi[i] == 'l' || input_expresi[i] == 'n' || input_expresi[i] == '&'
+						  || input_expresi[i] == 'o'|| input_expresi[i] == 'e' || input_expresi[i] == 'a') {
 				    i++;
 				    char operator = input_expresi[i - 1];
 				    double number1 = stack_number[stack_number_top--];
-				    stack_number[++stack_number_top] = proses_operasi(number1, 0, operator);
+				    stack_number[++stack_number_top] = proses_1operasi(number1, operator);
 				} 
 				else {
 		            while (stack_operator_top >= 0 && cek_prioritas(stack_operator[stack_operator_top]) >= cek_prioritas(input_expresi[i])) {
@@ -191,9 +212,7 @@ void proses_kalkulator(){
 			    char operator = stack_operator[stack_operator_top--];
 			    stack_number[++stack_number_top] = proses_operasi(number1, number2, operator);
 			}
-		
-			printf("\t\t\tHasil: %g\n", stack_number[0]);
-			Sleep(500);
+			return  stack_number[0];
 			
 }
 #endif
