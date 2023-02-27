@@ -53,6 +53,7 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t| (t) = untuk operasi tangen                         |");
 	printf("\n\t\t\t| (l) = untuk operasi logaritma                      |");
 	printf("\n\t\t\t| (p) = untuk operasi Phi                            |");
+	printf("\n\t\t\t| (m) = untuk operasi modul                          |");
 	printf("\n\t\t\t| (nl) = untuk operasi natural logaritma             |");
 	printf("\n\t\t\t| (&) = untuk operasi akar pangkat n                 |");
 	printf("\n\t\t\t| (%%) = untuk operasi hitung persentase              |");
