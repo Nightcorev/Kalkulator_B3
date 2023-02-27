@@ -178,10 +178,10 @@ double proses_kalkulator(){
 			printf("\n\t\t\tMasukkan expresi: ");
     		scanf("%s", input_expresi);
     		for (i = 0; input_expresi[i]; i++) {
-		        if (isdigit(input_expresi[i])) {
+		        if (isdigit(input_expresi[i]) ) {
 		            char number[100];
 		            int number_top = 0;
-		            while (isdigit(input_expresi[i])) {
+		            while (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
 		                number[number_top++] = input_expresi[i++];
 		            }
 		            number[number_top] = '\0';
