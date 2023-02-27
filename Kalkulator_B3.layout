@@ -1,25 +1,25 @@
 [Editors]
 <<<<<<< HEAD
-Order=0,1,4,3,2
-Focused=1
+Order=0,4,3,2
+Focused=2
 [Editor_0]
 CursorCol=6
 CursorRow=78
-TopLine=39
+TopLine=1
 LeftChar=1
 [Editor_1]
 <<<<<<< HEAD
-CursorCol=46
-CursorRow=48
+CursorCol=153
+CursorRow=193
 =======
 CursorCol=1
 CursorRow=1
 >>>>>>> taufik_2
-TopLine=166
+TopLine=183
 LeftChar=1
 [Editor_2]
-CursorCol=25
-CursorRow=4
+CursorCol=19
+CursorRow=7
 =======
 Order=3,0
 Focused=0

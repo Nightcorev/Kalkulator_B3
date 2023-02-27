@@ -77,7 +77,7 @@ double kalkulatorMeter(){
 
 double modulus(double a, double b){
 	double result;
-	result= a%b;
+	result= (int)a % (int)b;
 	return result;
 }
 #endif

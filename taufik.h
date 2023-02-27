@@ -12,6 +12,9 @@
 void menu_utama();
 void menu_kalkulator_scientifik();
 void menu_kalkulator_konversi();
+double proses_1operasi(double bilangan1, char opr);
+double proses_operasi(double bilangan1, double bilangan2, char opr);
+double proses_kalkulator(); 
 
 //Isi Program
 void menu_utama(){
@@ -124,7 +127,9 @@ double proses_operasi(double bilangan1, double bilangan2, char opr) {
         case '%':
         	return hitungPersentase(bilangan1, bilangan2);   
 		case '&':
-        	return hitung_akar(bilangan1,bilangan2);      	
+        	return hitung_akar(bilangan1,bilangan2);      
+		case 'm':
+			return modulus(bilangan1, bilangan2);	
         default:
             printf("Invalid operator: %c", opr);
             exit(1);
@@ -145,6 +150,7 @@ int cek_prioritas(char opr) {
         case '&':
         case 'p':
         case '%':
+        case 'm':
             return 3;
         case '*':
         case '/':
