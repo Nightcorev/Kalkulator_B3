@@ -9,16 +9,16 @@ TopLine=39
 LeftChar=1
 [Editor_1]
 <<<<<<< HEAD
-CursorCol=46
-CursorRow=48
+CursorCol=18
+CursorRow=139
 =======
 CursorCol=1
 CursorRow=1
 >>>>>>> taufik_2
-TopLine=166
+TopLine=173
 LeftChar=1
 [Editor_2]
-CursorCol=25
+CursorCol=1
 CursorRow=4
 =======
 Order=3,0
@@ -57,9 +57,9 @@ CursorRow=14
 TopLine=2
 LeftChar=1
 [Editor_3]
-CursorCol=29
+CursorCol=26
 CursorRow=27
-TopLine=1
+TopLine=40
 LeftChar=1
 [Editor_4]
 CursorCol=28

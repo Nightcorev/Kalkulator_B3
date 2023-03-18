@@ -19,9 +19,9 @@ double inputLogarithm()
 }
 
 //rumus logaritma
-double logarithm(double number)
+double logarithm(double base, double number)
 {
-	return log10(number);
+	return log(number)/log(base);
 }
 
 //rumus Logaritma Natural
