@@ -45,20 +45,17 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t|----------------------------------------------------|");
 	printf("\n\t\t\t| Keterangan :                                       |");
 	printf("\n\t\t\t| (^) = untuk operasi perpangkatan                   |");
-	printf("\n\t\t\t| (l) = untuk operasi logaritma                      |");
 	printf("\n\t\t\t| (p) = untuk operasi Phi                            |");
-	printf("\n\t\t\t| (m) = untuk operasi modul                          |");
-	printf("\n\t\t\t| (nl) = untuk operasi natural logaritma             |");
+	printf("\n\t\t\t| (m) = untuk operasi modulus                        |");
 	printf("\n\t\t\t| (&) = untuk operasi akar pangkat n                 |");
 	printf("\n\t\t\t| (%%) = untuk operasi hitung persentase              |");
 	printf("\n\t\t\t|                                                    |");
 	printf("\n\t\t\t| Guide :                                            |");
 	printf("\n\t\t\t| 1. Tidak menggunakan spasi                         |");
-	printf("\n\t\t\t| 2. untuk operasi 1 bilangan seperti menghitung cos |");
-	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 90c       |");
-	printf("\n\t\t\t| 3. untuk operasi 2 bilangan pada menghitung cos dll|");
-	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 90c0+2-1  |");
-	printf("\n\t\t\t|    *angka 0 digunakan sebagai bilangan pembantu    |");
+	printf("\n\t\t\t| 2. untuk operasi trigonometri                      |");
+	printf("\n\t\t\t|    contohnya seperti berikut : cos(90)             |");
+	printf("\n\t\t\t| 3. untuk operasi logaritma                         |");
+	printf("\n\t\t\t|    contohnya seperti berikut : 2log(3)             |");
 	printf("\n\t\t\t| 4. untuk operasi menghitung persentase             |");
 	printf("\n\t\t\t|    cara menggunakannya seperti berikut : 20%%100=20%%|");
 	printf("\n\t\t\t------------------------------------------------------");
@@ -160,13 +157,13 @@ double operasi_trigono(double bilangan1, char* trigono) {
     	return result;
 	}
 }
-double operasi_logaritma(double bilangan1, char* logaritma) {
+double operasi_logaritma(double bilangan1,double bilangan2, char* logaritma) {
     double result = 0;
     if (strcmp(logaritma, "nl(") == 0) {
-        result = naturalLogarithm(bilangan1);
+        result = naturalLogarithm(bilangan2);
     }
     else if (strcmp(logaritma, "log(") == 0) {
-        result =  logarithm(bilangan1);
+        result =  logarithm(bilangan1,bilangan2);
     }else{
     	return result;
 	}
@@ -210,7 +207,7 @@ double proses_kalkulator(){
 					char trigono[100];
 					int j=0;
 					char number[100];
-					int number1;
+					double number1;
 					int number_top = 0;
 					while(input_expresi[i] != ')'){
 						 if (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
@@ -223,11 +220,11 @@ double proses_kalkulator(){
 					stack_number[++stack_number_top] = strtod(number,NULL);
 					number1 = stack_number[stack_number_top];
 					stack_number[stack_number_top] = operasi_trigono(number1,trigono);
-				}else if(input_expresi[i] == 'n' || input_expresi[i] == 'l'){
+				}else if(input_expresi[i] == 'n' ){
 					char logaritma[100];
 					int j=0;
 					char number[100];
-					int number1;
+					double number1;
 					int number_top = 0;
 					while(input_expresi[i] != ')'){
 						 if (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
@@ -239,7 +236,24 @@ double proses_kalkulator(){
 					}
 					stack_number[++stack_number_top] = strtod(number,NULL);
 					number1 = stack_number[stack_number_top];
-					stack_number[stack_number_top] = operasi_logaritma(number1,logaritma);
+					stack_number[stack_number_top] = operasi_logaritma(0,number1,logaritma);
+				}else if (input_expresi[i] == 'l'){
+					int  j = 0, number_top = 0;
+					char  operator_log[100], nomor[100];
+				    double bilangan, bilangan2;
+					while(input_expresi[i]!=')'){
+		            	if(isdigit(input_expresi[i])||input_expresi[i]=='.'){
+		            		nomor[number_top++] = input_expresi[i++];
+						}else {
+						    operator_log[j++] = input_expresi[i++];
+						    operator_log[99] = '\0';    
+						}
+						
+					}
+					stack_number[++stack_number_top] = strtod(nomor,NULL);
+					bilangan = stack_number[stack_number_top--];
+					bilangan2 = stack_number[stack_number_top--];
+					stack_number[++stack_number_top] = operasi_logaritma(bilangan,bilangan2,operator_log);
 				}
 				else {
 		            while (stack_operator_top >= 0 && cek_prioritas(stack_operator[stack_operator_top]) >= cek_prioritas(input_expresi[i])) {
