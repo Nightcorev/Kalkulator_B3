@@ -45,12 +45,6 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t|----------------------------------------------------|");
 	printf("\n\t\t\t| Keterangan :                                       |");
 	printf("\n\t\t\t| (^) = untuk operasi perpangkatan                   |");
-	printf("\n\t\t\t| (o) = untuk operasi cosec                          |");
-	printf("\n\t\t\t| (e) = untuk operasi sec                            |");
-	printf("\n\t\t\t| (a) = untuk operasi cotan                          |");
-	printf("\n\t\t\t| (s) = untuk operasi sinus                          |");
-	printf("\n\t\t\t| (c) = untuk operasi cosinus                        |");
-	printf("\n\t\t\t| (t) = untuk operasi tangen                         |");
 	printf("\n\t\t\t| (l) = untuk operasi logaritma                      |");
 	printf("\n\t\t\t| (p) = untuk operasi Phi                            |");
 	printf("\n\t\t\t| (m) = untuk operasi modul                          |");
@@ -88,23 +82,7 @@ void menu_kalkulator_konversi(){
 }
 
 double proses_1operasi(double bilangan1, char opr){
-	switch(opr){
-		case 'o':
-			return trigonometri(bilangan1,opr);
-		case 'e':
-			return trigonometri(bilangan1,opr);
-		case 'a':
-			return trigonometri(bilangan1,opr);
-	    case 's':
-        	return trigonometri(bilangan1,opr);
-        case 't':
-        	return trigonometri(bilangan1,opr);
-        case 'c':
-        	return trigonometri(bilangan1,opr);
-        case 'l':
-        	return logarithm(bilangan1);
-        case 'n':
-        	return naturalLogarithm(bilangan1);       	
+	switch(opr){       	
         case 'p':
         	return hitung_phi(bilangan1);
         default:
@@ -140,14 +118,6 @@ double proses_operasi(double bilangan1, double bilangan2, char opr) {
 int cek_prioritas(char opr) {
     switch (opr) {
         case '^':
-        case 's':
-        case 't':
-        case 'c':
-        case 'l':
-        case 'o':
-		case 'e':
-		case 'a':
-        case 'n':
         case '&':
         case 'p':
         case '%':
@@ -168,6 +138,40 @@ int cek_prioritas(char opr) {
     }
 }
 
+double operasi_trigono(double bilangan1, char* trigono) {
+    double result = 0;
+    if (strcmp(trigono, "sin(") == 0) {
+        result = sinHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "cos(") == 0) {
+        result =  cosHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "tan(") == 0) {
+        result =  tanHasil(bilangan1);
+    }else if (strcmp(trigono, "cosec(") == 0) {
+        result = cosecHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "sec(") == 0) {
+        result =  secHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "cotan(") == 0) {
+        result =  cotanHasil(bilangan1);
+    }else{
+    	return result;
+	}
+}
+double operasi_logaritma(double bilangan1, char* logaritma) {
+    double result = 0;
+    if (strcmp(logaritma, "nl(") == 0) {
+        result = naturalLogarithm(bilangan1);
+    }
+    else if (strcmp(logaritma, "log(") == 0) {
+        result =  logarithm(bilangan1);
+    }else{
+    	return result;
+	}
+}
+
 double proses_kalkulator(){
 	char input_expresi[100];
     double stack_number[100];
@@ -175,7 +179,7 @@ double proses_kalkulator(){
     char stack_operator[100];
     int stack_operator_top = -1;
     int i;
-			printf("\n\t\t\tMasukkan expresi: ");
+			printf("\n\t\t\tMasukkan expresi: ");fflush(stdin);
     		scanf("%s", input_expresi);
     		for (i = 0; input_expresi[i]; i++) {
 		        if (isdigit(input_expresi[i]) ) {
@@ -197,13 +201,46 @@ double proses_kalkulator(){
 		                stack_number[++stack_number_top] = proses_operasi(number1, number2, operator);
 		            }
 		            stack_operator_top--;
-		        }else if (input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' || input_expresi[i] == 'l' || input_expresi[i] == 'n' 
-						  || input_expresi[i] == 'o'|| input_expresi[i] == 'e' || input_expresi[i] == 'a'|| input_expresi[i] == 'p') {
+		        }else if (input_expresi[i] == 'p') {
 				    i++;
 				    char operator = input_expresi[i - 1];
 				    double number1 = stack_number[stack_number_top--];
 				    stack_number[++stack_number_top] = proses_1operasi(number1, operator);
-				} 
+				} else if(input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' ){
+					char trigono[100];
+					int j=0;
+					char number[100];
+					int number1;
+					int number_top = 0;
+					while(input_expresi[i] != ')'){
+						 if (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
+		                	number[number_top++] = input_expresi[i++];
+		            	}else{
+		            		trigono[j++] = input_expresi[i++];
+		            		trigono[99] = '\0';
+						}
+					}
+					stack_number[++stack_number_top] = strtod(number,NULL);
+					number1 = stack_number[stack_number_top];
+					stack_number[stack_number_top] = operasi_trigono(number1,trigono);
+				}else if(input_expresi[i] == 'n' || input_expresi[i] == 'l'){
+					char logaritma[100];
+					int j=0;
+					char number[100];
+					int number1;
+					int number_top = 0;
+					while(input_expresi[i] != ')'){
+						 if (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
+		                	number[number_top++] = input_expresi[i++];
+		            	}else{
+		            		logaritma[j++] = input_expresi[i++];
+		            		logaritma[99] = '\0';
+						}
+					}
+					stack_number[++stack_number_top] = strtod(number,NULL);
+					number1 = stack_number[stack_number_top];
+					stack_number[stack_number_top] = operasi_logaritma(number1,logaritma);
+				}
 				else {
 		            while (stack_operator_top >= 0 && cek_prioritas(stack_operator[stack_operator_top]) >= cek_prioritas(input_expresi[i])) {
 		                double number2 = stack_number[stack_number_top--];
