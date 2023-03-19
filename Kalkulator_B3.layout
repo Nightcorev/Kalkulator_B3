@@ -1,25 +1,38 @@
 [Editors]
 <<<<<<< HEAD
-Order=0,1,4,3,2
+Order=0,4,3,2,5,1
 Focused=1
 [Editor_0]
 CursorCol=6
 CursorRow=78
-TopLine=39
+TopLine=1
 LeftChar=1
 [Editor_1]
+<<<<<<< HEAD
 <<<<<<< HEAD
 CursorCol=18
 CursorRow=139
 =======
+CursorCol=42
+CursorRow=132
+>>>>>>> bf79582864da5f812f1c6afb3fae021fa76bec0f
+=======
 CursorCol=1
 CursorRow=1
 >>>>>>> taufik_2
+<<<<<<< HEAD
 TopLine=173
 LeftChar=1
 [Editor_2]
 CursorCol=1
 CursorRow=4
+=======
+TopLine=115
+LeftChar=1
+[Editor_2]
+CursorCol=19
+CursorRow=7
+>>>>>>> bf79582864da5f812f1c6afb3fae021fa76bec0f
 =======
 Order=3,0
 Focused=0
@@ -47,9 +60,9 @@ CursorRow=1
 TopLine=1
 LeftChar=1
 [Editor_5]
-CursorCol=11
-CursorRow=31
-TopLine=1
+CursorCol=15
+CursorRow=80
+TopLine=50
 LeftChar=1
 [Editor_7]
 CursorCol=58
