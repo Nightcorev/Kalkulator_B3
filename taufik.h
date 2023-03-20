@@ -9,32 +9,12 @@
 #define PHI 1.6180339887
 
 //Deklarasi Modul Tampilan
-void menu_utama();
 void menu_kalkulator_scientifik();
-void menu_kalkulator_konversi();
-double proses_1operasi(double bilangan1, char opr);
+double proses_1operasi(double bilangan1, char* opr);
 double proses_operasi(double bilangan1, double bilangan2, char opr);
 double proses_kalkulator(); 
 
 //Isi Program
-void menu_utama(){
-	system("cls");
-	printf("\n\n\n");
-	printf("\n\t\t\t-------------------------------");
-	printf("\n\t\t\t|       Selamat Datang        |");
-	printf("\n\t\t\t|             Di              |");
-	printf("\n\t\t\t|    Scientifik Kalkulator    |");
-	printf("\n\t\t\t|         Kelompok B3         |");
-	printf("\n\t\t\t|-----------------------------|");
-	printf("\n\t\t\t|         Menu Utama          |");
-	printf("\n\t\t\t|                             |");
-	printf("\n\t\t\t-------------------------------");
-	printf("\n\t\t\t| 1. Scientifik Kalkulator    |");
-	printf("\n\t\t\t| 2. Kalkulator Konversi      |");
-	printf("\n\t\t\t| 3. Keluar                   |");
-	printf("\n\t\t\t|                             |");
-	printf("\n\t\t\t-------------------------------");
-}
 
 
 void menu_kalkulator_scientifik(){
@@ -61,31 +41,15 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t------------------------------------------------------");
 }
 
-void menu_kalkulator_konversi(){
-	system("cls");
-	printf("\n\n\n");
-	printf("\n\t\t\t-------------------------------");
-	printf("\n\t\t\t|    Scientifik Kalkulator    |");
-	printf("\n\t\t\t|         Kelompok B3         |");
-	printf("\n\t\t\t|-----------------------------|");
-	printf("\n\t\t\t|        Menu Konverai        |");
-	printf("\n\t\t\t|                             |");
-	printf("\n\t\t\t| 1. Konversi Jarak           |");
-	printf("\n\t\t\t| 2. Konversi Suhu            |");
-	printf("\n\t\t\t| 3. Konversi Waktu           |");
-	printf("\n\t\t\t| 4. Kembali                  |");
-	printf("\n\t\t\t|                             |");
-	printf("\n\t\t\t-------------------------------");
-}
 
-double proses_1operasi(double bilangan1, char opr){
-	switch(opr){       	
-        case 'p':
-        	return hitung_phi(bilangan1);
-        default:
-            printf("Invalid operator: %c", opr);
+double proses_1operasi(double bilangan1, char* opr){
+	double result = 0;
+	 if (strcmp(opr, "phi(") == 0) {
+        result = hitung_phi(bilangan1);
+    }else{
+    	printf("Invalid operator: %c", opr);
             exit(1);
-    }
+	}
 }
 
 double proses_operasi(double bilangan1, double bilangan2, char opr) {
@@ -199,10 +163,21 @@ double proses_kalkulator(){
 		            }
 		            stack_operator_top--;
 		        }else if (input_expresi[i] == 'p') {
-				    i++;
-				    char operator = input_expresi[i - 1];
-				    double number1 = stack_number[stack_number_top--];
-				    stack_number[++stack_number_top] = proses_1operasi(number1, operator);
+				    int  j = 0, number_top = 0;
+					char  operator_log[100], nomor[100];
+				    double bilangan;
+					while(input_expresi[i]!=')'){
+		            	if(isdigit(input_expresi[i])||input_expresi[i]=='.'){
+		            		nomor[number_top++] = input_expresi[i++];
+						}else {
+						    operator_log[j++] = input_expresi[i++];
+						    operator_log[99] = '\0';    
+						}
+						
+					}
+					stack_number[++stack_number_top] = strtod(nomor,NULL);
+					bilangan = stack_number[stack_number_top];
+					stack_number[stack_number_top] = proses_1operasi(bilangan,operator_log);
 				} else if(input_expresi[i] == 's' || input_expresi[i] == 'c' || input_expresi[i] == 't' ){
 					char trigono[100];
 					int j=0;
