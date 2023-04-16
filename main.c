@@ -18,9 +18,7 @@ int main(int argc, char *argv[]) {
 	double hasil;
 	char kembali;
 	
-		
-	for(;;){
-		do{
+	do{
 		
 		menu_kalkulator_scientifik();
 		hasil = proses_kalkulator();
@@ -28,10 +26,6 @@ int main(int argc, char *argv[]) {
 		printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
 		scanf("%c",&kembali);	
 		}while(kembali == 'T' || kembali =='t');
-		
-		
-	}
-
 
 	return 0;
 }

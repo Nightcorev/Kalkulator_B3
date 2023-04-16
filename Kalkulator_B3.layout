@@ -1,17 +1,17 @@
 [Editors]
 <<<<<<< HEAD
 Order=0,4,3,2,1
-Focused=1
+Focused=4
 [Editor_0]
-CursorCol=2
-CursorRow=37
-TopLine=10
+CursorCol=11
+CursorRow=30
+TopLine=1
 LeftChar=1
 [Editor_1]
 <<<<<<< HEAD
 <<<<<<< HEAD
-CursorCol=19
-CursorRow=169
+CursorCol=48
+CursorRow=212
 =======
 CursorCol=42
 CursorRow=132
@@ -21,7 +21,7 @@ CursorCol=1
 CursorRow=1
 >>>>>>> taufik_2
 <<<<<<< HEAD
-TopLine=159
+TopLine=199
 LeftChar=1
 [Editor_2]
 CursorCol=1
@@ -70,12 +70,12 @@ CursorRow=14
 TopLine=2
 LeftChar=1
 [Editor_3]
-CursorCol=26
+CursorCol=25
 CursorRow=27
-TopLine=10
+TopLine=1
 LeftChar=1
 [Editor_4]
-CursorCol=28
+CursorCol=1
 CursorRow=24
 TopLine=19
 LeftChar=1

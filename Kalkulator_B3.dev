@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=6
+UnitCount=5
 
 [VersionInfo]
 Major=1
@@ -61,16 +61,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=kalkulator.h
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit3]
 FileName=taufik.h
 CompileCpp=0
 Folder=
@@ -80,7 +70,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit4]
+[Unit3]
 FileName=Afyar.h
 CompileCpp=0
 Folder=
@@ -90,8 +80,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit5]
+[Unit4]
 FileName=alfien.h
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
+FileName=ikhsan.h
 CompileCpp=0
 Folder=
 Compile=1

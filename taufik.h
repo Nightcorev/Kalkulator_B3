@@ -195,27 +195,10 @@ double proses_kalkulator(){
 					stack_number[++stack_number_top] = strtod(number,NULL);
 					number1 = stack_number[stack_number_top];
 					stack_number[stack_number_top] = operasi_trigono(number1,trigono);
-				}else if(input_expresi[i] == 'n' ){
-					char logaritma[100];
-					int j=0;
-					char number[100];
-					double number1;
-					int number_top = 0;
-					while(input_expresi[i] != ')'){
-						 if (isdigit(input_expresi[i]) || input_expresi[i] == '.') {
-		                	number[number_top++] = input_expresi[i++];
-		            	}else{
-		            		logaritma[j++] = input_expresi[i++];
-		            		logaritma[99] = '\0';
-						}
-					}
-					stack_number[++stack_number_top] = strtod(number,NULL);
-					number1 = stack_number[stack_number_top];
-					stack_number[stack_number_top] = operasi_logaritma(0,number1,logaritma);
 				}else if (input_expresi[i] == 'l'){
-					int  j = 0, number_top = 0;
+					int  j = 0, number_top = 0, toInt = 0;
 					char  operator_log[100], nomor[100];
-				    double bilangan, bilangan2;
+				    double bilangan, bilangan2,temp;
 					while(input_expresi[i]!=')'){
 		            	if(isdigit(input_expresi[i])||input_expresi[i]=='.'){
 		            		nomor[number_top++] = input_expresi[i++];
@@ -226,9 +209,18 @@ double proses_kalkulator(){
 						
 					}
 					stack_number[++stack_number_top] = strtod(nomor,NULL);
-					bilangan = stack_number[stack_number_top--];
-					bilangan2 = stack_number[stack_number_top--];
-					stack_number[++stack_number_top] = operasi_logaritma(bilangan,bilangan2,operator_log);
+					bilangan = stack_number[stack_number_top];
+					bilangan2 = stack_number[--stack_number_top];
+					toInt = bilangan2;
+					if(strcmp(operator_log,"log(")==0){
+						if( toInt != 0){
+							stack_number[stack_number_top] = processLogarithm(bilangan,bilangan2,operator_log);
+						}else{
+							stack_number[++stack_number_top] = processLogarithm(bilangan,10,operator_log);
+						}
+					}else{
+						stack_number[++stack_number_top] = processLogarithm(bilangan,0,operator_log);
+					}	
 				}
 				else {
 		            while (stack_operator_top >= 0 && cek_prioritas(stack_operator[stack_operator_top]) >= cek_prioritas(input_expresi[i])) {
