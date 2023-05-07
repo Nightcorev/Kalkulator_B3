@@ -5,6 +5,7 @@
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
+#include "header.h"
 
 /*Daftar modul*/
 double logarithm(double number, double base);

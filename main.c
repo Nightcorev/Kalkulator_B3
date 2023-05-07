@@ -8,6 +8,7 @@
 #include "alfien.h"
 #include "Zia.h"
 #include "Fikri.h"
+#include "header.h"
 
 //Deklarasi Variabel Global
 #define PHI 1.6180339887
@@ -16,12 +17,26 @@
 
 int main(int argc, char *argv[]) {
 	double hasil;
-	char kembali;
+	char input_expresi[100];
+	char kembali,temp;
+	Stack ListStack;
+	Queue ListQueue;
+	node Node;
+	
 	
 	do{
+		system("cls");
+		address root;
+		ListQueue.First=NULL;
+		ListQueue.Last=NULL;
+		ListStack.Head=NULL;
 		
 		menu_kalkulator_scientifik();
-		hasil = proses_kalkulator();
+		printf("\n\t\t\tMasukkan expresi: ");fflush(stdin);
+    	scanf("%s", input_expresi);
+		proses_kalkulator(&ListQueue,&ListStack,input_expresi);
+		root = BuildTree(&ListQueue);
+		hasil = proses_operasi(root);
 		printf("\n\t\t\tHasil : %g",hasil);
 		printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
 		scanf("%c",&kembali);	
