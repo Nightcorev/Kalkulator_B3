@@ -6,13 +6,14 @@
 #include <string.h>
 #include <ctype.h>
 #include "header.h"
+#include "Zia.h"
 
 /*Daftar modul*/
 double logarithm(double number, double base);
 double naturalLogarithm(double number);
 double processLogarithm(double number, double base, char *op);
 node CreateNodeList();
-address BuildTree(infotype postfix[]);
+address Create_Tree(Queue Z);
 
 //rumus logaritma
 double logarithm(double number, double base)

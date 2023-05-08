@@ -1,5 +1,6 @@
 #ifndef Zia_h
 #define Zia_h
+#include "header.h"
 
 void pertambahan_kurang(){
 	
@@ -39,7 +40,7 @@ double pembagian(double bil1, double bil2){
 	return bil1 / bil2;
 }
 
-address CreateNodeOperand(float input){
+address CreateNodeOperand(double input){
 	address P;
 	P = (address) malloc (sizeof (Tree));
 	P->operand=input;

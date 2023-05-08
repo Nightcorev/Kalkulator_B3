@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include "header.h"
 
 const float sudutSegitiga=180.0;
 double sinHasil(double angleTrigonometri);

@@ -5,7 +5,7 @@
 #include <stdlib.h>
 //#include <string.h>
 
-float faktorial(float n);
+double faktorial(double n);
 int derajatOperator(infotype oper);
 int isOperator(infotype oper); 
 double modulus(double a, double b);
@@ -15,7 +15,7 @@ int derajatOperator(infotype oper){
 		return 1;
 	} else if(oper=='*' || oper=='/'){
 		return 2;
-	} else if(oper=='^' || oper=='v'){
+	} else if(oper=='^' || oper=='%' || oper=='&' || oper=='m'){
 		return 3;
 	} else{
 		printf("Error, Operator Tidak Diketahui: %c", oper);
@@ -24,14 +24,14 @@ int derajatOperator(infotype oper){
 }
 
 int isOperator(infotype oper){
-	if(oper=='+' || oper=='-' || oper=='*' || oper=='/' || oper=='^' || oper=='v'){
+	if(oper=='+' || oper=='-' || oper=='*' || oper=='/' || oper=='^' || oper=='%' || oper=='&' || oper=='m'){
 		return 1;
 	} 
 	return 0;
 }
 
-float faktorial(float n){
-	float hasil=1;
+double faktorial(double n){
+	double hasil=1;
 	int i=1;
 	
 	while(i<=n){
