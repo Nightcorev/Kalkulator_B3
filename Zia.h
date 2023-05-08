@@ -39,5 +39,26 @@ double pembagian(double bil1, double bil2){
 	return bil1 / bil2;
 }
 
+address CreateNodeOperand(float input){
+	address P;
+	P = (address) malloc (sizeof (Tree));
+	P->operand=input;
+	P->isOperator=0;
+	P->left=NULL;
+	P->right=NULL;
+	return P;
+	
+}
+
+address CreateNodeOperator(char input){
+	address P;
+	P = (address) malloc (sizeof (Tree));
+	P->data=input;
+	P->isOperator=1;
+	P->left=NULL;
+	P->right=NULL;
+	return P;
+	
+}
 
 #endif
