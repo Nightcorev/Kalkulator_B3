@@ -59,4 +59,56 @@ double cotanHasil(double angleTrigonometri){
 	return hasilCotan;
 }
 
+double DequeOperand(Queue *A){
+	float q;
+	node First,Last,Throw;
+	First=A->First;
+	Last=A->Last;
+	if(First==NULL){
+		printf("Queue Empty");
+	}else{
+		if(First!=Last){
+			while(First->next!=Last){
+				First=First->next;
+			}
+			Throw=Last;
+			q=Last->operand;
+			A->Last=First;
+			A->Last->next=NULL;
+			free(Throw);
+			return q;
+		}else{
+			Throw=Last;
+			q=Last->operand;
+			A->Last=NULL;
+			A->First=NULL;
+			free(Throw);
+			return q;
+		}
+		
+	}
+}
+
+double operasi_trigono(double bilangan1, char* trigono) {
+    double result = 0;
+    if (strcmp(trigono, "sin(") == 0) {
+        result = sinHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "cos(") == 0) {
+        result =  cosHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "tan(") == 0) {
+        result =  tanHasil(bilangan1);
+    }else if (strcmp(trigono, "cosec(") == 0) {
+        result = cosecHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "sec(") == 0) {
+        result =  secHasil(bilangan1);
+    }
+    else if (strcmp(trigono, "cotan(") == 0) {
+        result =  cotanHasil(bilangan1);
+    }else{
+    	return result;
+	}
+}
 #endif

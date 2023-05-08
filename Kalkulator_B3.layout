@@ -1,7 +1,16 @@
 [Editors]
 <<<<<<< HEAD
+<<<<<<< HEAD
 Order=0,4,3,2,1,5,6
 Focused=-1
+=======
+Order=0,4,3,2,1,5
+<<<<<<< HEAD
+Focused=5
+=======
+Focused=1
+>>>>>>> ikhsan
+>>>>>>> 8d34c58635a84d8cfd6b71a06d5c6ce1fc2b3804
 [Editor_0]
 CursorCol=11
 CursorRow=30
@@ -10,8 +19,13 @@ LeftChar=1
 [Editor_1]
 <<<<<<< HEAD
 <<<<<<< HEAD
-CursorCol=48
+<<<<<<< HEAD
+CursorCol=20
 CursorRow=212
+=======
+CursorCol=1
+CursorRow=100
+>>>>>>> ikhsan
 =======
 CursorCol=42
 CursorRow=132
@@ -21,7 +35,11 @@ CursorCol=1
 CursorRow=1
 >>>>>>> taufik_2
 <<<<<<< HEAD
+<<<<<<< HEAD
 TopLine=4
+=======
+TopLine=88
+>>>>>>> ikhsan
 LeftChar=1
 [Editor_2]
 CursorCol=1
@@ -60,8 +78,8 @@ CursorRow=1
 TopLine=1
 LeftChar=1
 [Editor_5]
-CursorCol=1
-CursorRow=7
+CursorCol=17
+CursorRow=6
 TopLine=1
 LeftChar=1
 [Editor_7]
@@ -70,14 +88,20 @@ CursorRow=14
 TopLine=2
 LeftChar=1
 [Editor_3]
-CursorCol=23
-CursorRow=13
-TopLine=1
+CursorCol=28
+CursorRow=73
+TopLine=56
 LeftChar=1
 [Editor_4]
+<<<<<<< HEAD
 CursorCol=1
 CursorRow=24
 TopLine=19
+=======
+CursorCol=31
+CursorRow=62
+TopLine=39
+>>>>>>> ikhsan
 LeftChar=1
 [Editor_6]
 CursorCol=2
