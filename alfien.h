@@ -57,25 +57,35 @@ node CreateNodeList(){
 	return P;
 }
 
-//build tree
-address BuildTree(infotype postfix[]){
+address Create_Tree(Queue Z){
 	address P;
 	address stack[50];
+	node Q;
 	int i, len, top=-1;
 	infotype c;
+	float d;
 	
-	len=strlen(postfix);
+	Q=Z.First;
 	
-	for(i=0;i<len;i++){
-		c=postfix[i];
-		if(isdigit(c)){
-			P=CreateNode(c);
-		} else{
-			P=CreateNode(c);
+	while(Q!=NULL){
+		if(Q->isoperator==1){
+			c=Q->oprtr;
+			P=CreateNodeOperator(c);
 			right(P)=stack[top--];
 			left(P)=stack[top--];
+		}else{
+			d=Q->operand;
+			P=CreateNodeOperand(d);
 		}
+//		if(isdigit(c)){
+//			P=CreateNode(c);
+//		} else{
+//			P=CreateNode(c);
+//			right(P)=stack[top--];
+//			left(P)=stack[top--];
+//		}
 		stack[++top]=P;
+		Q=Q->next;
 	}
 	return(stack[0]);
 }

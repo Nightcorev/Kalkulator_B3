@@ -2,7 +2,7 @@
 <<<<<<< HEAD
 Order=0,4,3,2,1,5
 <<<<<<< HEAD
-Focused=3
+Focused=5
 =======
 Focused=1
 >>>>>>> ikhsan
@@ -15,7 +15,7 @@ LeftChar=1
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-CursorCol=48
+CursorCol=20
 CursorRow=212
 =======
 CursorCol=1
@@ -73,8 +73,8 @@ CursorRow=1
 TopLine=1
 LeftChar=1
 [Editor_5]
-CursorCol=1
-CursorRow=7
+CursorCol=17
+CursorRow=6
 TopLine=1
 LeftChar=1
 [Editor_7]
@@ -83,9 +83,9 @@ CursorRow=14
 TopLine=2
 LeftChar=1
 [Editor_3]
-CursorCol=23
-CursorRow=13
-TopLine=1
+CursorCol=28
+CursorRow=73
+TopLine=56
 LeftChar=1
 [Editor_4]
 <<<<<<< HEAD
