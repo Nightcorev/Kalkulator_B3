@@ -274,25 +274,6 @@ void proses_kalkulator(Queue *listQ, Stack *listS, char* input ){
 				printf("\t\t\tformat yang anda masukkan salah: ");
 //				listQ->invalid=1;
 			}
-		}if (token=='p'){
-			char NamaOprtr[7];
-			char nomor[20];
-			int x=0;
-			j=0;
-			float hasil;
-			while(input[i]!=')'){
-				if(isdigit(input[i]) || input[i]=='.'){
-					nomor[j++]=input[i];
-				} else{
-					NamaOprtr[x++]=input[i];
-				}
-				i++;
-			}
-			nomor[j]='\0';
-			angka=strtof(nomor, NULL);
-			hasil=proses_1operasi(angka,NamaOprtr);
-		
-			EnqueOperand(&*listQ, hasil);	
 		}
 		else{
 			PushStack(&*listS,token, &P);
