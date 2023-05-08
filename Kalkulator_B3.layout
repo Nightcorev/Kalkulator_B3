@@ -1,11 +1,16 @@
 [Editors]
 <<<<<<< HEAD
+<<<<<<< HEAD
+Order=0,4,3,2,1,5,6
+Focused=-1
+=======
 Order=0,4,3,2,1,5
 <<<<<<< HEAD
 Focused=5
 =======
 Focused=1
 >>>>>>> ikhsan
+>>>>>>> 8d34c58635a84d8cfd6b71a06d5c6ce1fc2b3804
 [Editor_0]
 CursorCol=11
 CursorRow=30
@@ -97,4 +102,9 @@ CursorCol=31
 CursorRow=62
 TopLine=39
 >>>>>>> ikhsan
+LeftChar=1
+[Editor_6]
+CursorCol=2
+CursorRow=76
+TopLine=38
 LeftChar=1
