@@ -1,15 +1,15 @@
 #ifndef Afyar_h
 #define Afyar_h
+#include <math.h>
 
-#define PHI 1.6180339887
+double perpangkatan (double x, double y);
+double hitungPersentase(double angka, double persen);
+double hitung_akar(double n, double a);
+double hitung_phi(double input);
 
-int perpangkatan (int x, int y);
-float hitungPersentase(float angka, float persen);
-double akarKuadrat(double x);
 
-
-int perpangkatan (int x, int y){
-	int i, a;
+double perpangkatan (double x, double y){
+	double i, a;
 	a=x;
 	
 	for (i=1; i<y; i++){
@@ -19,13 +19,19 @@ int perpangkatan (int x, int y){
 }
 
 
-float hitungPersentase(float angka, float persen) {
+double hitungPersentase(double angka, double persen) {
     return angka * (persen / 100);
 }
 
 
-double akarKuadrat(double x) {
-  return sqrt(x);
+double hitung_akar(double n, double a) {
+   double hasil = pow(n, 1/a);
+   return hasil;
+}
+
+
+double hitung_phi(double input){
+return input*M_PI;
 }
 
 #endif

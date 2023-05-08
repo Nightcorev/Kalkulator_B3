@@ -2,48 +2,45 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
-#include "kalkulator.h"
+#include "taufik.h"
+#include "ikhsan.h"
+#include "Afyar.h"
+#include "alfien.h"
+#include "Zia.h"
+#include "Fikri.h"
+#include "header.h"
+
+//Deklarasi Variabel Global
+#define PHI 1.6180339887
 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(int argc, char *argv[]) {
-	int pilih_menu;
-	char kembali;
-
-	menu_utama();
-	printf("\n\t\t\tPilih Menu : ");
-	scanf("%d",&pilih_menu);
+	double hasil;
+	char input_expresi[100];
+	char kembali,temp;
+	Stack ListStack;
+	Queue ListQueue;
+	node Node;
 	
-	switch(pilih_menu){
-		case 1 :
-			menu_kalkulator_scientifik();
-			proses_kalkulator();
-			break;
-		case 2 :
-			menu_kalkulator_konversi();
-			printf("Pilih Menu : ");
-			scanf("%d",&pilih_menu);
-			switch(pilih_menu){
-				case 1:
-					system("cls");
-					kalkulatorMeter();
-					break;
-				case 2:
-					menu_kalkulator_konversi();
-					break;
-				default:
-					printf("\n\t\t\tSalah Input !!");
-					menu_kalkulator_konversi();
-					break;
-				
-				
-			}
-			break;
-		default:
-			printf("\n\t\t\tSalah Input !!");
-			menu_utama();
-			break;
-	}
+	
+	do{
+		system("cls");
+		address root;
+		ListQueue.First=NULL;
+		ListQueue.Last=NULL;
+		ListStack.Head=NULL;
+		
+		menu_kalkulator_scientifik();
+		printf("\n\t\t\tMasukkan expresi: ");fflush(stdin);
+    	scanf("%s", input_expresi);
+		proses_kalkulator(&ListQueue,&ListStack,input_expresi);
+		root = BuildTree(&ListQueue);
+		hasil = proses_operasi(root);
+		printf("\n\t\t\tHasil : %g",hasil);
+		printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
+		scanf("%c",&kembali);	
+		}while(kembali == 'T' || kembali =='t');
 
 	return 0;
 }
