@@ -59,6 +59,7 @@ address CreateNodeOperator(char input){
 	P->right=NULL;
 	return P;
 	
-}
+}  
+
 
 #endif
