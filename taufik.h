@@ -97,28 +97,6 @@ int cek_prioritas(char opr) {
     }
 }
 
-double operasi_trigono(double bilangan1, char* trigono) {
-    double result = 0;
-    if (strcmp(trigono, "sin(") == 0) {
-        result = sinHasil(bilangan1);
-    }
-    else if (strcmp(trigono, "cos(") == 0) {
-        result =  cosHasil(bilangan1);
-    }
-    else if (strcmp(trigono, "tan(") == 0) {
-        result =  tanHasil(bilangan1);
-    }else if (strcmp(trigono, "cosec(") == 0) {
-        result = cosecHasil(bilangan1);
-    }
-    else if (strcmp(trigono, "sec(") == 0) {
-        result =  secHasil(bilangan1);
-    }
-    else if (strcmp(trigono, "cotan(") == 0) {
-        result =  cotanHasil(bilangan1);
-    }else{
-    	return result;
-	}
-}
 double operasi_logaritma(double bilangan1,double bilangan2, char* logaritma) {
     double result = 0;
     if (strcmp(logaritma, "nl(") == 0) {
