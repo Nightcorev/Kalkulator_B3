@@ -1,9 +1,9 @@
 #ifndef ikhsan_h
 #define ikhsan_h
-#define phi 3.14159265
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
+#define phi 3.1415926535897931
+#define limit 20
 
 const float sudutSegitiga=180.0;
 double sinHasil(double angleTrigonometri);
@@ -13,50 +13,80 @@ double cosecHasil(double angleTrigonometri);
 double secHasil(double angleTrigonometri);
 double cotanHasil(double angleTrigonometri);
 
-
-double sinHasil(double angleTrigonometri){
-	double hasilSin;
+double sinHasil(double angleTrigonometri)
+{
+	double sum;
+	double fa;
+	double pow;
+	int i,j;
+	sum = 0.0;
 	
-	hasilSin=(angleTrigonometri*phi)/sudutSegitiga;
-	hasilSin=sin(hasilSin);
-	return hasilSin;
+	angleTrigonometri=(angleTrigonometri*phi)/sudutSegitiga;
+	
+	for(i = 0; i <= limit; i++)
+	{
+		fa = 1.0;
+		pow = 1.0;
+		for(j = 1; j <= 2*i+1; j++)
+		{
+			fa *= j;
+			pow *= angleTrigonometri;
+		}
+		sum += ((i%2?-1.0:1.0)/fa)*pow;
+	}
+	return sum;
 }
 
-double cosHasil(double angleTrigonometri){
-	double hasilCos;
+double cosHasil(double angleTrigonometri)
+{
+	double sum;
+	double fa;
+	double pow;
+	sum = 0.0;
+	int i,j;
 	
-	hasilCos=(angleTrigonometri*phi)/sudutSegitiga;
-	hasilCos=cos(hasilCos);
-	return hasilCos;
+	angleTrigonometri=(angleTrigonometri*phi)/sudutSegitiga;
+	
+	for(i = 0; i <= limit; i++)
+	{
+		fa = 1.0;
+		pow = 1.0;
+		for(j = 1; j <= 2*i; j++)
+		{
+			fa *= j;
+			pow *= angleTrigonometri;
+		}
+		sum += ((i%2?-1.0:1.0)/fa)*pow;
+	}
+	return sum;
 }
 
 double tanHasil(double angleTrigonometri){
-	double hasilTan;
+	double result;
 	
-	hasilTan=(angleTrigonometri*phi)/sudutSegitiga;
-	hasilTan=tan(hasilTan);
-	return hasilTan;
+	result=sinHasil(angleTrigonometri)/cosHasil(angleTrigonometri);
+	return result;
 }
 
 double cosecHasil(double angleTrigonometri){
-	double hasilCosec;
+	double result;
 	
-	hasilCosec=1/sinHasil(angleTrigonometri);
-	return hasilCosec;
+	result=1/sinHasil(angleTrigonometri);
+	return result;
 }
 
 double secHasil(double angleTrigonometri){
-	double hasilSec;
+	double result;
 	
-	hasilSec=1/cosHasil(angleTrigonometri);
-	return hasilSec;
+	result=1/cosHasil(angleTrigonometri);
+	return result;
 }
 
 double cotanHasil(double angleTrigonometri){
-	double hasilCotan;
+	double result;
 	
-	hasilCotan=1/tanHasil(angleTrigonometri);
-	return hasilCotan;
+	result=1/tanHasil(angleTrigonometri);
+	return result;
 }
 
 double DequeOperand(Queue *A){
