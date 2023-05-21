@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 		printf("\n\t\t\tMasukkan expresi: ");fflush(stdin);
     	scanf("%s", input_expresi);
 		proses_kalkulator(&ListQueue,&ListStack,input_expresi);
-		root = BuildTree(&ListQueue);
+		root = Create_Tree(ListQueue);
 		hasil = proses_operasi(root);
 		printf("\n\t\t\tHasil : %g",hasil);
 		printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
