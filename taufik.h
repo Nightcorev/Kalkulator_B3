@@ -110,7 +110,7 @@ void proses_kalkulator(Queue *listQ, char* input, char* kembali){
 	listS.Head=NULL;
 	for(i=0;i<strlen(input);i++){
 		token=input[i];
-		if(isdigit(token)||token=='.'||(token=='-'&&(isOperator(input[i-1], &*kembali)||i==0||input[i-1]=='('))){
+		if(isdigit(token)||token=='.'||(token=='-'&&(isOperator(input[i-1])||i==0||input[i-1]=='('))){
 			if(isdigit(token)){
 				num=num*10+(token-'0');
 			}else if(token=='.'){
@@ -175,7 +175,7 @@ void proses_kalkulator(Queue *listQ, char* input, char* kembali){
 				hasil*=angka1;
 				EnqueOperand(&*listQ, hasil);
 			}
-		}else if(isOperator(token,&*kembali)&&listS.Head!=NULL&&listS.Head->oprtr!='('&&isdigit(input[i-1])){
+		}else if(isOperator(token)&&listS.Head!=NULL&&listS.Head->oprtr!='('&&isdigit(input[i-1])){
 			oprtr=listS.Head->oprtr;
 			while(derajatOperator(token)<=derajatOperator(oprtr)&&listS.Head!=NULL&&listS.Head->oprtr!='('){
 				EnqueOperator(&*listQ,PopStack(&listS));
@@ -193,85 +193,47 @@ void proses_kalkulator(Queue *listQ, char* input, char* kembali){
 				printf("format yang dimasukkan salah\n");
 				break;
 			}
-		}else if(token == 'l'){
-			char numLog[20];
-			int x=0;
-			int j=0;
-			double hasil;
-			double angka1;
-			if(isdigit(input[i-1])){
-				angka1=DequeOperand(&*listQ);
-				if((input[i+1]=='o')&&(input[i+2]=='g')&&(input[i+3]=='(')){
-					i=i+4;
-					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
-						numLog[j++]=input[i];
-						i++;
-					}
-					numLog[j]='\0';
-					if(input[i]==')'){
-						angka=strtof(numLog, NULL);
-						hasil=logarithm(angka,angka1);
-						EnqueOperand(&*listQ, hasil);
-					}else{
-						*kembali='y';
-					}
-				}else if((input[i+1]=='n')&&(input[i+2]=='(')){
-					i=i+3;
-					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
-						numLog[j++]=input[i];
-						i++;
-					}
-					numLog[j]='\0';
-					if(input[i]==')'){
-						angka=strtof(numLog, NULL);
-						if(angka==0){
-							*kembali='y';
-						}else{
-							hasil=naturalLogarithm(angka);
-							hasil*=angka1;
-							EnqueOperand(&*listQ, hasil);
-						}
-					}else{
-						*kembali='y';
-					}
+		}// Jika token adalah karakter 'l' (untuk logaritma)
+		else if (token == 'l'){
+			char log[10];
+			char Num[100];
+			float angka;
+			float a, hasil;
+			int j = 0, x = 0;
+
+			// Membaca basis logaritma dan bilangan
+			if (isdigit(input[i-1])){
+				a = DequeOperand(&*listQ); // Mengambil basis logaritma menggunakan modul Deque yang dipanggil dari ikhsan.h
+				while (input[i] != ')'){ // Melakukan looping hingga menemukan tanda kurung tutup
+				if (isdigit(input[i]) || input[i] == '.'){ // Mengecek apakah karakter saat ini merupakan digit atau desimal
+					Num[j++] = input[i]; // jika iya akan dimasukkan ke array Num yang nantinya akan dikonversi menjadi angka
 				}
-			}else{
-				if((input[i+1]=='o')&&(input[i+2]=='g')&&(input[i+3]=='(')){
-					i=i+4;
-					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
-						numLog[j++]=input[i];
-						i++;
-					}
-					numLog[j]='\0';
-					if(input[i]==')'){
-						angka=strtof(numLog, NULL);
-						hasil=logarithm(angka,10);
-						EnqueOperand(&*listQ, hasil);
-					}else{
-						*kembali='y';
-					}
-				}else if((input[i+1]=='n')&&(input[i+2]=='(')){
-					i=i+3;
-					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
-						numLog[j++]=input[i];
-						i++;
-					}
-					numLog[j]='\0';
-					if(input[i]==')'){
-						angka=strtof(numLog, NULL);
-						if(angka==0){
-							*kembali='y';
-						}else{
-							hasil=naturalLogarithm(angka);
-							EnqueOperand(&*listQ, hasil);
-						}
-					}else{
-						*kembali='y';
-					}
-				}else{
-					*kembali='y';
+				else{
+					log[x++] = input[i]; //jika tidak akan dimasukkan ke array log yang akan memenuhi maksudnya apakah log atau ln
 				}
+				i++;
 			}
+			Num[j] = '\0'; // mengakhiri array Num 
+			angka = strtof(Num, NULL); // mengubah kumpulan char yang ada pada array num menjadi float
+			hasil = processLogarithm(angka, a, log, &*kembali); // mengambil hasil yang dilakukan di modul prosesLogarithm
+			EnqueOperand(&*listQ, hasil);	
+			}
+			else{
+				while (input[i] != ')'){ // Melakukan looping hingga menemukan tanda kurung tutup
+					if (isdigit(input[i]) || input[i] == '.'){ // Mengecek apakah karakter saat ini merupakan digit atau desimal
+						Num[j++] = input[i]; // jika iya akan dimasukkan ke array Num yang nantinya akan dikonversi menjadi angka
+					}
+					else{
+						log[x++] = input[i]; //jika tidak akan dimasukkan ke array log yang akan memenuhi maksudnya apakah log atau ln
+					}
+					i++;
+				}
+				Num[j] = '\0'; // mengakhiri array Num 
+				angka = strtof(Num, NULL); // mengubah kumpulan char yang ada pada array num menjadi float
+				hasil = processLogarithm(angka, 10, log, &*kembali); // mengambil hasil yang dilakukan di modul prosesLogarithm
+				EnqueOperand(&*listQ, hasil);
+			}
+
 		}else if(token=='('){
 			listS=PushStack(listS,token);
 		}else if(token=='!'){

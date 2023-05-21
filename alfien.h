@@ -10,7 +10,7 @@
 /*Daftar modul*/
 double logarithm(double number, double base);
 double naturalLogarithm(double number);
-double processLogarithm(double number, double base, char *op);
+double processLogarithm(double number, double base, char *op, char *kembali);
 node CreateNodeList();
 address Create_Tree(Queue Z);
 
@@ -50,7 +50,7 @@ double naturalLogarithm(double number)
     return 2.0 * sum;
 }
 
-double processLogarithm(double number, double base, char *op){
+double processLogarithm(double number, double base, char *op, char *kembali){
 	if(strcmp(op,"log(")==0 && base != 0.0){	/*jika operator yang diinputkan yaitu log( dan basis yang diinputkan selain 0*/
 		return logarithm(number,base);	
 	}else if (strcmp(op,"log(")==0){			/*jika basis yang diinputkan adalah 0, maka basis dari logaritma diisi 10*/
@@ -58,8 +58,10 @@ double processLogarithm(double number, double base, char *op){
 	}else if (strcmp(op,"ln(")==0){				/*jika operator yang diinputkan yaitu ln(*/
 		return naturalLogarithm(number);
 	}
-	else{										/*jika operator yang diinputkan tidak sesuai dengan aturan*/
-		printf("\t\t\tOperator is invalid: %s", op);
+	else{	
+											/*jika operator yang diinputkan tidak sesuai dengan aturan*/
+		//printf("\t\t\tOperator is invalid: %s", op);
+		*kembali='y';
 		return 0;
 	}
 }
