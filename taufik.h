@@ -12,8 +12,10 @@
 void menu_kalkulator_scientifik();
 double proses_1operasi(double bilangan1, char* opr);
 double proses_operasi(address Troot);
-void proses_kalkulator(Queue *listQ, Stack *listS, char* input ); 
-
+double operasi_logaritma(double bilangan1,double bilangan2, char* logaritma);
+void EnqueOperator(Queue *listQ,char item);
+void EnqueOperand(Queue *Q,float item);
+void proses_kalkulator(Queue *listQ, Stack *listS, char* input);
 //Isi Program
 
 
@@ -24,7 +26,6 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t|----------------------------------------------------|");
 	printf("\n\t\t\t| Keterangan :                                       |");
 	printf("\n\t\t\t| (^) = untuk operasi perpangkatan                   |");
-	printf("\n\t\t\t| (p) = untuk operasi Phi                            |");
 	printf("\n\t\t\t| (m) = untuk operasi modulus                        |");
 	printf("\n\t\t\t| (&) = untuk operasi akar pangkat n                 |");
 	printf("\n\t\t\t| (!) = untuk operasi faktorial                 |");
