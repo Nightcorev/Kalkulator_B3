@@ -2,7 +2,6 @@
 #define alfien_H
 #include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
 #include <string.h>
 #include <ctype.h>
 #include "header.h"
@@ -15,44 +14,36 @@ double processLogarithm(double number, double base, char *op);
 node CreateNodeList();
 address Create_Tree(Queue Z);
 
-//rumus logaritma
+/*rumus logaritma*/
 double logarithm(double number, double base)
 { 
-	double  divResult = number;
-    double result;
-
-    if (number <= 0 || base <= 0) { /*jika number atau base kurang sama dengan 0*/
-        result = 0;
-    }else if (base == number) {	/*jika number sama dengan base*/
-        result = 1;
-    }else {
-       	for (result = 0; divResult >= base; result++) { /*looping berjalan selama divResult lebih besar sama dengan base*/
-            divResult = divResult/base;
-        }
-        if (divResult != 1) { /*jika divResult dari hasil looping tidak sama dengan 1*/
-            result = result+(divResult/base);
-        }
+	if (number <= 0 || base <= 0 || base == 1) {
+    	return 0; 		/*Nilai logaritma tidak terdefinisi untuk number <= 0, base <= 0, atau base = 1*/
     }
-
-    return result;
+    return naturalLogarithm(number) / naturalLogarithm(base);	
 }
 
-//rumus logaritma natural
+/*rumus logaritma natural*/
 double naturalLogarithm(double number)
 {	
 	/*referensi https://stackoverflow.com/questions/35968963/trying-to-calculate-logarithm-base-10-without-math-h-really-close-just-having*/
-    double old_sum = 0.0;
-    double xmlxpl = (number - 1) / (number + 1);
-    double xmlxpl_2 = xmlxpl * xmlxpl;
+	/*kamus data*/
+	double old_sum = 0.0;
+    double xmlxpl = (number - 1) / (number + 1);	/*menghitung perbedaan rasio yang digunakan dalam perhitungan iteratif logaritma alami*/
+    double xmlxpl_2 = xmlxpl * xmlxpl;				/*menyimpan kuadrat dari xmlxpl*/
     double denom = 1.0;
     double frac = xmlxpl;
-    double term = frac;     // denom start from 1.0
+    double term = frac;     						/*denom start from 1.0*/
     double sum = term;
+    
+	/*proses*/
+	if (number <= 0) {
+        return 0; 					/*Nilai logaritma tidak terdefinisi untuk number <= 0*/
+    }
 
-    while ( sum != old_sum )
-    {
-        old_sum = sum;
-        denom += 2.0;
+    while ( sum != old_sum ){		/*looping berjalan selama sum berbeda dengan old_sum*/
+        old_sum = sum;  			/*menyimpan nilai sum selama proses looping*/
+        denom += 2.0;				
         frac *= xmlxpl_2;
         sum += frac / denom;
     }
@@ -60,21 +51,16 @@ double naturalLogarithm(double number)
 }
 
 double processLogarithm(double number, double base, char *op){
-	int baseInt = base;
-	
-	if(strcmp(op,"log(")==0){
-		if (base != 0.0){
-			return logarithm(number,base);	
-		}else{
-			return logarithm(number,10.0);
-		}
-	}
-	else if (strcmp(op,"ln(")==0){
+	if(strcmp(op,"log(")==0 && base != 0.0){	/*jika operator yang diinputkan yaitu log( dan basis yang diinputkan selain 0*/
+		return logarithm(number,base);	
+	}else if (strcmp(op,"log(")==0){			/*jika basis yang diinputkan adalah 0, maka basis dari logaritma diisi 10*/
+		return logarithm(number,10.0);
+	}else if (strcmp(op,"ln(")==0){				/*jika operator yang diinputkan yaitu ln(*/
 		return naturalLogarithm(number);
 	}
-	else{
-		printf("\t\tOperator is invalid: %s", op);
-        exit(1);
+	else{										/*jika operator yang diinputkan tidak sesuai dengan aturan*/
+		printf("\t\t\tOperator is invalid: %s", op);
+		return 0;
 	}
 }
 
@@ -82,46 +68,41 @@ double processLogarithm(double number, double base, char *op){
 node CreateNodeList(){
 	node P;
 	
-	P = (node) malloc (sizeof (ElmtList));
-	if(P==NULL){
+	P = (node) malloc (sizeof (ElmtList));		/*alokasi node pada memory*/
+	if(P==NULL){								/*jika terjadi gagal alokasi*/
 		printf("Gagal Alokasi");
 	}else{
-		(P)->next=NULL;
-		(P)->isoperator=1;
+		(P)->next = NULL;			/*(P)->next diisikan null, karena belum terdapat node setelahnya*/
+		(P)->isoperator = 1;		/*(P)->isoperator diisikan 1 untuk menandakan node tersebut adalah node operator*/
 	} 
 	
 	return P;
 }
 
 address Create_Tree(Queue Z){
+	/*kamus data*/
 	address P;
 	address stack[50];
 	node Q;
-	int i, len, top=-1;
+	int top=-1;
 	infotype c;
 	float d;
 	
-	Q=Z.First;
+	/*proses*/
+	Q=Z.First; 				/*node Q diisikan dengan node yang ditunjuk oleh first*/
 	
 	while(Q!=NULL){
-		if(Q->isoperator==1){
-			c=Q->oprtr;
-			P=CreateNodeOperator(c);
-			right(P)=stack[top--];
-			left(P)=stack[top--];
+		if(Q->isoperator==1){			/*pengecekan node adalah node operator atau bukan*/
+			c=Q->oprtr;					/*variabel c bertipe char diisikan dengan info dari Q->oprtr, yaitu operator dari kalkulator*/
+			P=CreateNodeOperator(c);	/*variabel address P akan dialokasikan ke memory menjadi node tree*/
+			right(P)=stack[top--];		/*anak kanan P diisikan dengan stack[top]*/
+			left(P)=stack[top--];		/*anak kiri P diisikan dengan stack[top]*/
 		}else{
-			d=Q->operand;
-			P=CreateNodeOperand(d);
+			d=Q->operand;				/*variabel d bertipe float diisikan dengan info dari Q->operand, yaitu operand(angka) dari kalkulator*/
+			P=CreateNodeOperand(d);		/*variabel address P akan dialokasikan ke memory menjadi node tree*/
 		}
-//		if(isdigit(c)){
-//			P=CreateNode(c);
-//		} else{
-//			P=CreateNode(c);
-//			right(P)=stack[top--];
-//			left(P)=stack[top--];
-//		}
-		stack[++top]=P;
-		Q=Q->next;
+		stack[++top]=P;					/*variabel stack[top] diisikan dengan alamat P*/
+		Q=Q->next;						/*node Q diisi dengan alamat dari Q->next*/
 	}
 	return(stack[0]);
 }

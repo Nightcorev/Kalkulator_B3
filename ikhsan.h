@@ -2,6 +2,7 @@
 #define ikhsan_h
 #include <stdio.h>
 #include <stdlib.h>
+#include "header.h"
 #define phi 3.1415926535897931
 #define limit 20
 
