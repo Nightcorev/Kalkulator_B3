@@ -5,7 +5,6 @@
 double perpangkatan (double x, double y);
 double hitungPersentase(double angka, double persen);
 double hitung_akar(double n, double a);
-double hitung_phi(double input);
 
 void PushStack(Stack *First, char item, node *P);
 char PopStack(Stack *First);
@@ -29,17 +28,6 @@ double hitungPersentase(double angka, double persen) {
 double hitung_akar(double n, double a) {
    double hasil = pow(n, 1/a);
    return hasil;
-}
-
-
-double hitung_phi(double input){
-return input*M_PI;
-
-}
-
-
-double hitung_phi(double input){
-return input*M_PI;
 }
 
 
