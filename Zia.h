@@ -62,6 +62,6 @@ address CreateNodeOperator(char input){   //Fungsi ini mengambil satu parameter 
 	return P;                             //Mengembalikan alamat dari node
 	
 }  
-
+ 
 
 #endif
