@@ -57,66 +57,68 @@ double proses_1operasi(double bilangan1, char* opr){
 double proses_operasi(address Troot){
 	if(Troot->isOperator==1){ // Mengecek apakah Troot ialah operator atau bukan
 		if(Troot->data=='+'){ //Mengecek apakah subvar data pada Troot ialah karakter '+'
-			// jika iya akan melakuan proses perjumlahan yang diambil dari Zia.h
+			// jika iya akan melakuan proses perjumlahan yang diambil dari Zia.h lalu mereturn hasilnya
 			return perjumlahan(proses_operasi(Troot->left), proses_operasi(Troot->right)); 
 			
 		}else if(Troot->data=='-'){ //Mengecek apakah subvar data pada Troot ialah karakter '-'
-			// jika iya akan melakuan proses pengurangan yang diambil dari Zia.h
+			// jika iya akan melakuan proses pengurangan yang diambil dari Zia.h lalu mereturn hasilnya
 			return pengurangan(proses_operasi(Troot->left), proses_operasi(Troot->right)); 
 			
 		}else if(Troot->data=='/'){ //Mengecek apakah subvar data pada Troot ialah karakter '/'
-			// jika iya akan melakuan proses pembagian yang diambil dari Zia.h
+			// jika iya akan melakuan proses pembagian yang diambil dari Zia.h lalu mereturn hasilnya
 			return pembagian(proses_operasi(Troot->left), proses_operasi(Troot->right));			
 			
 		}else if(Troot->data=='*'){ //Mengecek apakah subvar data pada Troot ialah karakter '*'
-			// jika iya akan melakuan proses perkalian yang diambil dari Zia.h
+			// jika iya akan melakuan proses perkalian yang diambil dari Zia.h lalu mereturn hasilnya
 			return perkalian(proses_operasi(Troot->left), proses_operasi(Troot->right));
 			
 		}else if(Troot->data=='^'){ //Mengecek apakah subvar data pada Troot ialah karakter '^'
-			// jika iya akan melakuan proses perpangkatan yang diambil dari Afyar.h
+			// jika iya akan melakuan proses perpangkatan yang diambil dari Afyar.h lalu mereturn hasilnya
 			return perpangkatan(proses_operasi(Troot->left), proses_operasi(Troot->right));
 			
 		}else if(Troot->data=='&'){ //Mengecek apakah subvar data pada Troot ialah karakter '&'
-			// jika iya akan melakuan proses hitung_akar yang diambil dari Afyar.h
+			// jika iya akan melakuan proses hitung_akar yang diambil dari Afyar.h lalu mereturn hasilnya
 			return hitung_akar(proses_operasi(Troot->left), proses_operasi(Troot->right)); 
 			
 		}else if(Troot->data=='m'){ //Mengecek apakah subvar data pada Troot ialah karakter 'm'
-			// jika iya akan melakuan proses modulus yang diambil dari Fikri.h
+			// jika iya akan melakuan proses modulus yang diambil dari Fikri.h lalu mereturn hasilnya
 			return modulus(proses_operasi(Troot->left), proses_operasi(Troot->right));
 			
 		}else if(Troot->data=='%'){ //Mengecek apakah subvar data pada Troot ialah karakter '%'
-			// jika iya akan melakuan proses hitungPersentase yang diambil dari Afyar.h
+			// jika iya akan melakuan proses hitungPersentase yang diambil dari Afyar.h lalu mereturn hasilnya
 			return hitungPersentase(proses_operasi(Troot->left), proses_operasi(Troot->right));   
 			
 		}else{
 			 printf("\n\t\t\tInvalid operator ");
 		}
 	}
+	// Jika Troot bukan operator makan akan mereturn bilangan operand
 	return Troot->operand;
 }
 
 double operasi_logaritma(double bilangan1,double bilangan2, char* logaritma) {
     double result = 0;
-    if (strcmp(logaritma, "nl(") == 0) {
-        result = naturalLogarithm(bilangan2);
+    if (strcmp(logaritma, "nl(") == 0) { //Mengecek isi dari variabel logaritma menggunakan string compare  
+        result = naturalLogarithm(bilangan2); // Jika berisi "nl(" akan melakukan peroses natural Logaritma dengan memanggil modul dari alfien.h
     }
-    else if (strcmp(logaritma, "log(") == 0) {
-        result =  logarithm(bilangan1,bilangan2);
+    else if (strcmp(logaritma, "log(") == 0) {//Mengecek isi dari variabel logaritma menggunakan string compare  
+        result =  logarithm(bilangan1,bilangan2); // Jika berisi "log(" akan melakukan peroses Logaritma dengan memanggil modul dari alfien.h
     }else{
-    	return result;
+    	printf("\n\t\t\tInvalid operator ");
 	}
+	return result; 
 }
 
 void EnqueOperator(Queue *listQ,char item){
 	node P;
 	
-	P=CreateNodeList();
-	P->oprtr=item;
-	if(listQ->First==NULL){
+	P=CreateNodeList(); //Memanggil modul CrateNodeList dari alfien.h untuk membuat node queue baru
+	P->oprtr=item; //memasukkan subvar oprtr dari subvar node P dengan item
+	if(listQ->First==NULL){ // Mengecek apakah subvar dari listQ bernilai NULL jika iya First dan Last akan menunjuk node P dan next Last akan berisi Null
 		listQ->First=P;
 		listQ->Last=P;
 		listQ->Last->next=NULL;
-	} else{
+	} else{ // Jika tidak subvar next pada Last akan menunjuk node P dan Last akan berpindah pada node P 
 		P->next=NULL;
 		listQ->Last->next=P;
 		listQ->Last=P;
@@ -126,48 +128,20 @@ void EnqueOperator(Queue *listQ,char item){
 void EnqueOperand(Queue *Q,float item){
 	node P;
 	
-	P=CreateNodeList();
-	P->operand=item;
-	P->isoperator=0;
-	if(Q->First==NULL){
+	P=CreateNodeList(); //Memanggil modul CrateNodeList dari alfien.h untuk membuat node queue baru
+	P->operand=item; //memasukkan subvar operand dari subvar node P dengan item
+	P->isoperator=0; //subvar isOperator pada node P akan diberi nilai 0 yang menunjukan bukan Operator
+	if(Q->First==NULL){ // Mengecek apakah subvar dari listQ bernilai NULL jika iya First dan Last akan menunjuk node P dan next Last akan berisi Null
 		Q->First=P;
 		Q->Last=P;
 		Q->Last->next=NULL;
-	} else{
+	} else{ // Jika tidak subvar next pada Last akan menunjuk node P dan Last akan berpindah pada node P 
 		P->next=NULL;
 		Q->Last->next=P;
 		Q->Last=P;
 	}
 }
 
-void PushStack(Stack *First, char item, node *P){
-	*P = (node) malloc (sizeof (ElmtList));
-	if(P==NULL){
-		printf("Gagal Alokasi");
-	}else{
-
-		(*P)->oprtr=item;
-		(*P)->isoperator=1;
-		(*P)->next=NULL;
-		if(First->Head==NULL){
-			(*First).Head=*P;
-			(*First).Head->next=NULL;	
-		}else{
-			(*P)->next=First->Head;
-			First->Head=*P;
-		}
-	
-	
-	}
-}
-
-char PopStack(Stack *First){
-	node P;
-	P=First->Head;
-	First->Head=P->next;
-	return P->oprtr;
-	free(P);
-}
 
 
 void proses_kalkulator(Queue *listQ, Stack *listS, char* input){

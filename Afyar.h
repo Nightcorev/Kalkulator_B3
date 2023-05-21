@@ -2,22 +2,6 @@
 #define Afyar_h
 #include <math.h>
 
-<<<<<<< HEAD
-double perpangkatan (double x, double y);
-double hitungPersentase(double angka, double persen);
-double hitung_akar(double n, double a);
-double hitung_phi(double input);
-
-
-=======
-#include <math.h>
-
-
-int perpangkatan (int x, int y);
-double hitungPersentase(double angka, double persen);
-double akarKuadrat(double x);
-
-
 double perpangkatan (double x, double y);
 double hitungPersentase(double angka, double persen);
 double hitung_akar(double n, double a);
@@ -26,7 +10,6 @@ double hitung_phi(double input);
 void PushStack(Stack *First, char item, node *P);
 char PopStack(Stack *First);
 
->>>>>>> Afyar
 double perpangkatan (double x, double y){
 	double i, a;
 	a=x;
@@ -51,8 +34,7 @@ double hitung_akar(double n, double a) {
 
 double hitung_phi(double input){
 return input*M_PI;
-<<<<<<< HEAD
-=======
+
 }
 
 
@@ -87,7 +69,7 @@ char PopStack(Stack *First){
 	First->Head=P->next;
 	return P->oprtr;
 	free(P);
->>>>>>> Afyar
+
 }
 
 #endif
