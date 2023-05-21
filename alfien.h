@@ -113,13 +113,6 @@ address Create_Tree(Queue Z){
 			d=Q->operand;
 			P=CreateNodeOperand(d);
 		}
-//		if(isdigit(c)){
-//			P=CreateNode(c);
-//		} else{
-//			P=CreateNode(c);
-//			right(P)=stack[top--];
-//			left(P)=stack[top--];
-//		}
 		stack[++top]=P;
 		Q=Q->next;
 	}

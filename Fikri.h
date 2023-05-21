@@ -7,7 +7,7 @@
 
 double faktorial(double n);
 int derajatOperator(infotype oper);
-int isOperator(infotype oper); 
+int isOperator(infotype oper, char *kembali); 
 double modulus(double a, double b);
 
 int derajatOperator(infotype oper){
@@ -15,7 +15,7 @@ int derajatOperator(infotype oper){
 		return 1;
 	} else if(oper=='*' || oper=='/'){
 		return 2;
-	} else if(oper=='^' || oper=='%' || oper=='&' || oper=='m'){
+	} else if(oper=='^' || oper=='%' || oper=='m' || oper=='v'){
 		return 3;
 	} else{
 		printf("Error, Operator Tidak Diketahui: %c", oper);
@@ -23,10 +23,11 @@ int derajatOperator(infotype oper){
 	}
 }
 
-int isOperator(infotype oper){
-	if(oper=='+' || oper=='-' || oper=='*' || oper=='/' || oper=='^' || oper=='%' || oper=='&' || oper=='m'){
+int isOperator(infotype oper, char *kembali){
+	if(oper=='+' || oper=='-' || oper=='*' || oper=='/' || oper=='^' || oper=='%' || oper=='m' || oper=='v'){
 		return 1;
 	} 
+	*kembali='y';
 	return 0;
 }
 

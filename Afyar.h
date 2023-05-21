@@ -6,7 +6,7 @@ double perpangkatan (double x, double y);
 double hitungPersentase(double angka, double persen);
 double hitung_akar(double n, double a);
 
-void PushStack(Stack *First, char item, node *P);
+Stack PushStack(Stack First, char item);
 char PopStack(Stack *First);
 
 double perpangkatan (double x, double y){
@@ -31,25 +31,26 @@ double hitung_akar(double n, double a) {
 }
 
 
-void PushStack(Stack *First, char item, node *P){
-	*P = (node) malloc (sizeof (ElmtList));
+Stack PushStack(Stack First, char item){
+	node P;
+	P = (node) malloc (sizeof (ElmtList));
 	if(P==NULL){
 		printf("Gagal Alokasi");
 	}else{
 
-		(*P)->oprtr=item;
-		(*P)->isoperator=1;
-		(*P)->next=NULL;
-		if(First->Head==NULL){
-			(*First).Head=*P;
-			(*First).Head->next=NULL;	
+		P->oprtr=item;
+		P->isoperator=1;
+		P->next=NULL;
+		if(First.Head==NULL){
+			First.Head=P;
+			First.Head->next=NULL;	
 		}else{
-			(*P)->next=First->Head;
-			First->Head=*P;
+			P->next=First.Head;
+			First.Head=P;
 		}
+	return First;
 	}
 }
-
 
 char PopStack(Stack *First){
 	node P;
@@ -57,7 +58,6 @@ char PopStack(Stack *First){
 	First->Head=P->next;
 	return P->oprtr;
 	free(P);
-
 }
 
 #endif

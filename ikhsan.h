@@ -133,28 +133,30 @@ double DequeOperand(Queue *A)
 	}
 }
 
-double operasi_trigono(double bilangan1, char* trigono) 
+double operasi_trigono(double bilangan1, char* trigono, char* kembali) 
 //Modul ini untuk mengidentifikasi operator trigono
 {
     double result = 0;
-    if (strcmp(trigono, "sin(") == 0) {
+    if (strcmp(trigono,"sin(") == 0) {
         result = sinHasil(bilangan1);
     }
-    else if (strcmp(trigono, "cos(") == 0) {
+    else if (strcmp(trigono,"cos(") == 0) {
         result =  cosHasil(bilangan1);
     }
-    else if (strcmp(trigono, "tan(") == 0) {
+    else if (strcmp(trigono,"tan(") == 0) {
         result =  tanHasil(bilangan1);
-    }else if (strcmp(trigono, "cosec(") == 0) {
+    }else if (strcmp(trigono,"csc(") == 0) {
         result = cosecHasil(bilangan1);
     }
-    else if (strcmp(trigono, "sec(") == 0) {
+    else if (strcmp(trigono,"sec(") == 0) {
         result =  secHasil(bilangan1);
     }
-    else if (strcmp(trigono, "cotan(") == 0) {
+    else if (strcmp(trigono,"cot(") == 0) {
         result =  cotanHasil(bilangan1);
     }else{
+    	*kembali='y';
     	return result;
 	}
 }
+
 #endif

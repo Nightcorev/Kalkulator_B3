@@ -19,28 +19,33 @@ int main(int argc, char *argv[]) {
 	double hasil;
 	char input_expresi[100];
 	char kembali,temp;
-	Stack ListStack;
 	Queue ListQueue;
 	node Node;
-	
 	
 	do{
 		system("cls");
 		address root;
 		ListQueue.First=NULL;
 		ListQueue.Last=NULL;
-		ListStack.Head=NULL;
+		kembali='t';
 		
-		menu_kalkulator_scientifik(); //memanggil modul untuk menampilkan menu dari taufik.h
+		menu_kalkulator_scientifik();
 		printf("\n\t\t\tMasukkan expresi: ");fflush(stdin);
-    	scanf("%s", input_expresi); // Menginputkan expresi yang akan diproses
-		proses_kalkulator(&ListQueue,&ListStack,input_expresi);//Melakukan proes kalkulator yaitu proes infix to postfix dengan memanggil modul dari tufik.h
-		root = Create_Tree(ListQueue); //Membuat tree dari listQueue yang sudah dibuat di proses_kalkulator dengan memanggil modul dari alfien.h
-		hasil = proses_operasi(root); //Menghitung hasil akhir dari tree yang sudah dibuat dengan memanggil modul proes_operasi dari taufik.h
-		printf("\n\t\t\tHasil : %g",hasil);
-		printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
-		scanf("%c",&kembali);	
-		}while(kembali == 'T' || kembali =='t');
+    	scanf("%s", input_expresi);
+    	fflush(stdin);
+    	proses_kalkulator(&ListQueue,input_expresi,&kembali);
+    	if(kembali=='t'){
+			root = Create_Tree(ListQueue);
+			hasil = proses_operasi(root);
+			printf("\n\t\t\tHasil : %g",hasil);
+			printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
+			scanf("%c",&kembali);	
+		}else{
+			printf("\t\t\tMATH ERROR");
+			printf("\n\t\t\tKeluar (y/t) : ");fflush(stdin);
+			scanf("%c",&kembali);	
+		}
+	}while(kembali == 'T' || kembali =='t');
 
 	return 0;
 }
