@@ -4,10 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 //#include <string.h>
+#include "header.h"
 
 double faktorial(double n);
 int derajatOperator(infotype oper);
-int isOperator(infotype oper, char *kembali); 
+int isOperator(infotype oper); 
 double modulus(double a, double b);
 
 int derajatOperator(infotype oper){
@@ -23,11 +24,10 @@ int derajatOperator(infotype oper){
 	}
 }
 
-int isOperator(infotype oper, char *kembali){
+int isOperator(infotype oper){
 	if(oper=='+' || oper=='-' || oper=='*' || oper=='/' || oper=='^' || oper=='%' || oper=='m' || oper=='v'){
 		return 1;
-	} 
-	*kembali='y';
+	}
 	return 0;
 }
 
