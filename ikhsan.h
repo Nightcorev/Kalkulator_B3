@@ -15,6 +15,7 @@ double secHasil(double angleTrigonometri);
 double cotanHasil(double angleTrigonometri);
 
 double sinHasil(double angleTrigonometri)
+//melakukan proses Trigonometri SIN Referensi: https://medium.com/@Konstantinos_Gkizinos/c-program-to-calculate-sin-x-and-cos-x-without-using-math-h-ca62f7b3777c
 {
 	double sum;
 	double fa;
@@ -39,6 +40,7 @@ double sinHasil(double angleTrigonometri)
 }
 
 double cosHasil(double angleTrigonometri)
+//melakukan proses Trigonometri COS referensi: https://medium.com/@Konstantinos_Gkizinos/c-program-to-calculate-sin-x-and-cos-x-without-using-math-h-ca62f7b3777c
 {
 	double sum;
 	double fa;
@@ -62,35 +64,46 @@ double cosHasil(double angleTrigonometri)
 	return sum;
 }
 
-double tanHasil(double angleTrigonometri){
+double tanHasil(double angleTrigonometri)
+//melakukan proses Trigonometri TAN
+{
 	double result;
 	
 	result=sinHasil(angleTrigonometri)/cosHasil(angleTrigonometri);
 	return result;
 }
 
-double cosecHasil(double angleTrigonometri){
+double cosecHasil(double angleTrigonometri)
+//melakukan proses Trigonometri COSEC
+{
 	double result;
 	
 	result=1/sinHasil(angleTrigonometri);
 	return result;
 }
 
-double secHasil(double angleTrigonometri){
+double secHasil(double angleTrigonometri)
+//melakukan proses Trigonometri SEC
+{
 	double result;
 	
 	result=1/cosHasil(angleTrigonometri);
 	return result;
 }
 
-double cotanHasil(double angleTrigonometri){
+double cotanHasil(double angleTrigonometri)
+//melakukan proses Trigonometri COTAN
+{
 	double result;
 	
 	result=1/tanHasil(angleTrigonometri);
 	return result;
 }
 
-double DequeOperand(Queue *A){
+double DequeOperand(Queue *A)
+//Tujuan dari modul ini adalah untuk melakukan deque pada queue
+//Modul ini, digunakan untuk mengambil operand di depan operator
+{
 	float q;
 	node First,Last,Throw;
 	First=A->First;
@@ -120,26 +133,30 @@ double DequeOperand(Queue *A){
 	}
 }
 
-double operasi_trigono(double bilangan1, char* trigono) {
+double operasi_trigono(double bilangan1, char* trigono, char* kembali) 
+//Modul ini untuk mengidentifikasi operator trigono
+{
     double result = 0;
-    if (strcmp(trigono, "sin(") == 0) {
+    if (strcmp(trigono,"sin(") == 0) {
         result = sinHasil(bilangan1);
     }
-    else if (strcmp(trigono, "cos(") == 0) {
+    else if (strcmp(trigono,"cos(") == 0) {
         result =  cosHasil(bilangan1);
     }
-    else if (strcmp(trigono, "tan(") == 0) {
+    else if (strcmp(trigono,"tan(") == 0) {
         result =  tanHasil(bilangan1);
-    }else if (strcmp(trigono, "cosec(") == 0) {
+    }else if (strcmp(trigono,"csc(") == 0) {
         result = cosecHasil(bilangan1);
     }
-    else if (strcmp(trigono, "sec(") == 0) {
+    else if (strcmp(trigono,"sec(") == 0) {
         result =  secHasil(bilangan1);
     }
-    else if (strcmp(trigono, "cotan(") == 0) {
+    else if (strcmp(trigono,"cot(") == 0) {
         result =  cotanHasil(bilangan1);
     }else{
+    	*kembali='y';
     	return result;
 	}
 }
+
 #endif

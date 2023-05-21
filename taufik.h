@@ -10,9 +10,8 @@
 
 //Deklarasi Modul Tampilan
 void menu_kalkulator_scientifik();
-double proses_1operasi(double bilangan1, char* opr);
 double proses_operasi(address Troot);
-void proses_kalkulator(Queue *listQ, Stack *listS, char* input ); 
+void proses_kalkulator(Queue *listQ, char* input, char* kembali ); 
 
 //Isi Program
 
@@ -40,19 +39,6 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t------------------------------------------------------");
 }
 
-
-double proses_1operasi(double bilangan1, char* opr){
-	double result = 0;
-	 if (strcmp(opr, "phi(") == 0) {
-        result = hitung_phi(bilangan1);
-    }else{
-    	printf("Invalid operator: %c", opr);
-            exit(1);
-	}
-}
-
-
-
 double proses_operasi(address Troot){
 	if(Troot->isOperator==1){
 		if(Troot->data=='+'){
@@ -65,29 +51,17 @@ double proses_operasi(address Troot){
 			return perkalian(proses_operasi(Troot->left), proses_operasi(Troot->right));
 		}else if(Troot->data=='^'){
 			return perpangkatan(proses_operasi(Troot->left), proses_operasi(Troot->right));
-		}else if(Troot->data=='&'){
-			return hitung_akar(proses_operasi(Troot->left), proses_operasi(Troot->right)); 
 		}else if(Troot->data=='m'){
 			return modulus(proses_operasi(Troot->left), proses_operasi(Troot->right));
 		}else if(Troot->data=='%'){
 			return hitungPersentase(proses_operasi(Troot->left), proses_operasi(Troot->right));   
+		}else if(Troot->data=='v'){
+			return hitung_akar(proses_operasi(Troot->right), proses_operasi(Troot->left));
 		}else{
 			 printf("\n\t\t\tInvalid operator ");
 		}
 	}
 	return Troot->operand;
-}
-
-double operasi_logaritma(double bilangan1,double bilangan2, char* logaritma) {
-    double result = 0;
-    if (strcmp(logaritma, "nl(") == 0) {
-        result = naturalLogarithm(bilangan2);
-    }
-    else if (strcmp(logaritma, "log(") == 0) {
-        result =  logarithm(bilangan1,bilangan2);
-    }else{
-    	return result;
-	}
 }
 
 void EnqueOperator(Queue *listQ,char item){
@@ -123,47 +97,20 @@ void EnqueOperand(Queue *Q,float item){
 	}
 }
 
-void PushStack(Stack *First, char item, node *P){
-	*P = (node) malloc (sizeof (ElmtList));
-	if(P==NULL){
-		printf("Gagal Alokasi");
-	}else{
-
-		(*P)->oprtr=item;
-		(*P)->isoperator=1;
-		(*P)->next=NULL;
-		if(First->Head==NULL){
-			(*First).Head=*P;
-			(*First).Head->next=NULL;	
-		}else{
-			(*P)->next=First->Head;
-			First->Head=*P;
-		}
-	
-	
-	}
-}
-
-char PopStack(Stack *First){
+void proses_kalkulator(Queue *listQ, char* input, char* kembali){
 	node P;
-	P=First->Head;
-	First->Head=P->next;
-	return P->oprtr;
-	free(P);
-}
-
-
-void proses_kalkulator(Queue *listQ, Stack *listS, char* input ){
-	node P;
+	Stack listS;
 	char token,oprtr,negatif;
 	int num3=10;
 	int i,temp;
-	float num=0,num2;
-	float angka;
+	double num=0,num2;
+	double angka;
 	int j;
+	
+	listS.Head=NULL;
 	for(i=0;i<strlen(input);i++){
 		token=input[i];
-		if(isdigit(token)||token=='.'||(token=='-'&&(isOperator(input[i-1])||i==0||input[i-1]=='('))){
+		if(isdigit(token)||token=='.'||(token=='-'&&(isOperator(input[i-1], &*kembali)||i==0||input[i-1]=='('))){
 			if(isdigit(token)){
 				num=num*10+(token-'0');
 			}else if(token=='.'){
@@ -187,80 +134,146 @@ void proses_kalkulator(Queue *listQ, Stack *listS, char* input ){
 				EnqueOperand(&*listQ, num);
 				num=0;
 			}
-		}else if (token=='s' || token=='c' || token=='t' || token=='a'){
-			char trigono[7];
+		}else if (token=='s' || token=='c' || token=='t'){
+			char trigono[5];
 			char sudut[20];
 			int x=0;
-			j=0;
+			int j=0;
 			float hasil;
-			while(input[i]!=')'){
-				if(isdigit(input[i]) || input[i]=='.'){
-					sudut[j++]=input[i];
-				} else{
-					trigono[x++]=input[i];
+			double angka1;
+			if(!isdigit(input[i-1])){
+				while(input[i]!=')'&&i<strlen(input)){
+					if(isdigit(input[i]) || input[i]=='.'){
+						sudut[j++]=input[i];
+					} else{
+						trigono[x++]=input[i];
+					}
+					i++;
 				}
-				i++;
+				if(input[i]!=')'){
+					*kembali='y';
+				}
+				trigono[x]='\0';
+				sudut[j]='\0';
+				angka=strtod(sudut, NULL);
+				hasil=operasi_trigono(angka,trigono,&*kembali);
+				EnqueOperand(&*listQ, hasil);	
+			}else{
+				angka1=DequeOperand(&*listQ);
+				while(input[i]!=')'){
+					if(isdigit(input[i]) || input[i]=='.'){
+						sudut[j++]=input[i];
+					} else{
+						trigono[x++]=input[i];
+					}
+					i++;
+				}
+				trigono[x]='\0';
+				sudut[j]='\0';
+				angka=strtod(sudut, NULL);
+				hasil=operasi_trigono(angka,trigono,&*kembali);
+				hasil*=angka1;
+				EnqueOperand(&*listQ, hasil);
 			}
-			sudut[j]='\0';
-			angka=strtof(sudut, NULL);
-			hasil=operasi_trigono(angka,trigono);
-		
-			EnqueOperand(&*listQ, hasil);	
-		}else if(isOperator(token)&&listS->Head!=NULL&&listS->Head->oprtr!='('){
-			oprtr=listS->Head->oprtr;
-			while(derajatOperator(token)<=derajatOperator(oprtr)&&listS->Head!=NULL&&listS->Head->oprtr!='('){
-				EnqueOperator(&*listQ,PopStack(&*listS));
+		}else if(isOperator(token,&*kembali)&&listS.Head!=NULL&&listS.Head->oprtr!='('&&isdigit(input[i-1])){
+			oprtr=listS.Head->oprtr;
+			while(derajatOperator(token)<=derajatOperator(oprtr)&&listS.Head!=NULL&&listS.Head->oprtr!='('){
+				EnqueOperator(&*listQ,PopStack(&listS));
 			}
-			PushStack(&*listS,token, &P);
+			listS=PushStack(listS,token);
 		}else if(token==')'){
-			oprtr=listS->Head->oprtr;
-			while(oprtr!='('&&listS->Head->next!=NULL){
-				EnqueOperator(&*listQ,PopStack(&*listS));
-				oprtr=listS->Head->oprtr;
+			oprtr=listS.Head->oprtr;
+			while(oprtr!='('&&listS.Head->next!=NULL){
+				EnqueOperator(&*listQ,PopStack(&listS));
+				oprtr=listS.Head->oprtr;
 			}
 			if(oprtr=='('){
-				PopStack(&*listS);
+				PopStack(&listS);
 			}else{
 				printf("format yang dimasukkan salah\n");
 				break;
 			}
 		}else if(token == 'l'){
-			char log[10];
-			char Num[100];
-			float angka;
-			float a,hasil;
-			int j = 0,x = 0;
+			char numLog[20];
+			int x=0;
+			int j=0;
+			double hasil;
+			double angka1;
 			if(isdigit(input[i-1])){
-				a=DequeOperand(&*listQ);
-				while(input[i]!=')'){
-					if(isdigit(input[i]) || input[i]=='.'){
-						Num[j++]=input[i];
-					} else{
-						log[x++]=input[i];
+				angka1=DequeOperand(&*listQ);
+				if((input[i+1]=='o')&&(input[i+2]=='g')&&(input[i+3]=='(')){
+					i=i+4;
+					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
+						numLog[j++]=input[i];
+						i++;
 					}
-					i++;
+					numLog[j]='\0';
+					if(input[i]==')'){
+						angka=strtof(numLog, NULL);
+						hasil=logarithm(angka,angka1);
+						EnqueOperand(&*listQ, hasil);
+					}else{
+						*kembali='y';
+					}
+				}else if((input[i+1]=='n')&&(input[i+2]=='(')){
+					i=i+3;
+					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
+						numLog[j++]=input[i];
+						i++;
+					}
+					numLog[j]='\0';
+					if(input[i]==')'){
+						angka=strtof(numLog, NULL);
+						if(angka==0){
+							*kembali='y';
+						}else{
+							hasil=naturalLogarithm(angka);
+							hasil*=angka1;
+							EnqueOperand(&*listQ, hasil);
+						}
+					}else{
+						*kembali='y';
+					}
 				}
-				Num[j]='\0';
-				angka=strtof(Num, NULL);
-				hasil=processLogarithm(angka,a,log);
-				EnqueOperand(&*listQ, hasil);	
 			}else{
-				while(input[i]!=')'){
-					if(isdigit(input[i]) || input[i]=='.'){
-						Num[j++]=input[i];
-					} else{
-						log[x++]=input[i];
+				if((input[i+1]=='o')&&(input[i+2]=='g')&&(input[i+3]=='(')){
+					i=i+4;
+					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
+						numLog[j++]=input[i];
+						i++;
 					}
-					i++;
+					numLog[j]='\0';
+					if(input[i]==')'){
+						angka=strtof(numLog, NULL);
+						hasil=logarithm(angka,10);
+						EnqueOperand(&*listQ, hasil);
+					}else{
+						*kembali='y';
+					}
+				}else if((input[i+1]=='n')&&(input[i+2]=='(')){
+					i=i+3;
+					while((input[i]!=')')&&(isdigit(input[i]))||(input[i]!=')')&&(input[i]=='.')){
+						numLog[j++]=input[i];
+						i++;
+					}
+					numLog[j]='\0';
+					if(input[i]==')'){
+						angka=strtof(numLog, NULL);
+						if(angka==0){
+							*kembali='y';
+						}else{
+							hasil=naturalLogarithm(angka);
+							EnqueOperand(&*listQ, hasil);
+						}
+					}else{
+						*kembali='y';
+					}
+				}else{
+					*kembali='y';
 				}
-				Num[j]='\0';
-				angka=strtof(Num, NULL);
-				hasil=processLogarithm(angka,10,log);
-				EnqueOperand(&*listQ, hasil);	
 			}
-			
 		}else if(token=='('){
-			PushStack(&*listS,token, &P);
+			listS=PushStack(listS,token);
 		}else if(token=='!'){
 			float a,c;
 			char t;
@@ -271,19 +284,29 @@ void proses_kalkulator(Queue *listQ, Stack *listS, char* input ){
 				EnqueOperand(&*listQ,c);
 				
 			}else{
-				printf("\t\t\tformat yang anda masukkan salah: ");
-//				listQ->invalid=1;
+				*kembali='y';
 			}
 		}
-		else{
-			PushStack(&*listS,token, &P);
+		else if(token=='v'&&!isdigit(input[i-1])){
+			i++;
+			float hasilakarkuadrat=0;
+			int plus=0;
+			char num[20];
+			float num1;
+			while(isdigit(input[i])||input[i]=='.'){
+				num[plus++]=input[i];
+				i++;
+			}
+			num1=strtof(num,NULL);
+			hasilakarkuadrat=hitung_akar(num1,2);
+			EnqueOperand(&*listQ,hasilakarkuadrat);
+		}else{
+			listS=PushStack(listS,token);
 		}
 	}
-	while(listS->Head!=NULL){
-		oprtr=PopStack(&*listS);
+	while(listS.Head!=NULL){
+		oprtr=PopStack(&listS);
 		EnqueOperator(&*listQ,oprtr);
 	}
-			
-			
 }
 #endif
