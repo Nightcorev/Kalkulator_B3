@@ -57,9 +57,8 @@ double processLogarithm(double number, double base, char *op, char *kembali){
 		return logarithm(number,10.0);
 	}else if (strcmp(op,"ln(")==0){				/*jika operator yang diinputkan yaitu ln(*/
 		return naturalLogarithm(number);
-	}
-	else{	
-											/*jika operator yang diinputkan tidak sesuai dengan aturan*/
+	}else{	
+		/*jika operator yang diinputkan tidak sesuai dengan aturan*/
 		//printf("\t\t\tOperator is invalid: %s", op);
 		*kembali='y';
 		return 0;

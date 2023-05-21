@@ -247,19 +247,36 @@ void proses_kalkulator(Queue *listQ, char* input, char* kembali){
 			// Membaca basis logaritma dan bilangan
 			if (isdigit(input[i-1])){
 				a = DequeOperand(&*listQ); // Mengambil basis logaritma menggunakan modul Deque yang dipanggil dari ikhsan.h
-				while (input[i] != ')'){ // Melakukan looping hingga menemukan tanda kurung tutup
-				if (isdigit(input[i]) || input[i] == '.'){ // Mengecek apakah karakter saat ini merupakan digit atau desimal
-					Num[j++] = input[i]; // jika iya akan dimasukkan ke array Num yang nantinya akan dikonversi menjadi angka
+				if(input[i+1]=='n' && input[i+2]=='('){ //jika operator berupa ln( dengan angka di depannya
+					while (input[i] != ')'){ // Melakukan looping hingga menemukan tanda kurung tutup
+						if (isdigit(input[i]) || input[i] == '.'){ // Mengecek apakah karakter saat ini merupakan digit atau desimal
+							Num[j++] = input[i]; // jika iya akan dimasukkan ke array Num yang nantinya akan dikonversi menjadi angka
+						}
+						else{
+							log[x++] = input[i]; //jika tidak akan dimasukkan ke array log yang akan memenuhi maksudnya apakah log atau ln
+						}
+						i++;
+					}
+					Num[j] = '\0'; // mengakhiri array Num 
+					angka = strtof(Num, NULL); // mengubah kumpulan char yang ada pada array num menjadi float
+					hasil = processLogarithm(angka, a, log, &*kembali); // mengambil hasil yang dilakukan di modul prosesLogarithm
+					hasil*= a; //mengkalikan hasil dengan hasil dequeoperand
+					EnqueOperand(&*listQ, hasil);	
+				}else{ //jika operator berupa ln( dengan tidak ada angka di depannya
+					while (input[i] != ')'){ // Melakukan looping hingga menemukan tanda kurung tutup
+						if (isdigit(input[i]) || input[i] == '.'){ // Mengecek apakah karakter saat ini merupakan digit atau desimal
+							Num[j++] = input[i]; // jika iya akan dimasukkan ke array Num yang nantinya akan dikonversi menjadi angka
+						}
+						else{
+							log[x++] = input[i]; //jika tidak akan dimasukkan ke array log yang akan memenuhi maksudnya apakah log atau ln
+						}
+						i++;
+					}
+					Num[j] = '\0'; // mengakhiri array Num 
+					angka = strtof(Num, NULL); // mengubah kumpulan char yang ada pada array num menjadi float
+					hasil = processLogarithm(angka, a, log, &*kembali); // mengambil hasil yang dilakukan di modul prosesLogarithm
+					EnqueOperand(&*listQ, hasil);	
 				}
-				else{
-					log[x++] = input[i]; //jika tidak akan dimasukkan ke array log yang akan memenuhi maksudnya apakah log atau ln
-				}
-				i++;
-			}
-			Num[j] = '\0'; // mengakhiri array Num 
-			angka = strtof(Num, NULL); // mengubah kumpulan char yang ada pada array num menjadi float
-			hasil = processLogarithm(angka, a, log, &*kembali); // mengambil hasil yang dilakukan di modul prosesLogarithm
-			EnqueOperand(&*listQ, hasil);	
 			}
 			else{
 				while (input[i] != ')'){ // Melakukan looping hingga menemukan tanda kurung tutup
