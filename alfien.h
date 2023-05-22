@@ -52,11 +52,21 @@ double naturalLogarithm(double number)
 
 double processLogarithm(double number, double base, char *op, char *kembali){
 	if(strcmp(op,"log(")==0 && base != 0.0){	/*jika operator yang diinputkan yaitu log( dan basis yang diinputkan selain 0*/
-		return logarithm(number,base);	
-	}else if (strcmp(op,"log(")==0){			/*jika basis yang diinputkan adalah 0, maka basis dari logaritma diisi 10*/
-		return logarithm(number,10.0);
-	}else if (strcmp(op,"ln(")==0){				/*jika operator yang diinputkan yaitu ln(*/
-		return naturalLogarithm(number);
+		return logarithm(number,base);		
+	}else if (strcmp(op,"log(")==0){	/*jika basis yang diinputkan adalah 0, maka basis dari logaritma diisi 10*/
+		if(number!=0){			/*jika operator yang diinputkan yaitu ln(*/
+			return logarithm(number,10.0);
+		}else{
+			*kembali='y';
+			return 0;
+		}	
+	}else if (strcmp(op,"ln(")==0){	
+		if(number!=0){			/*jika operator yang diinputkan yaitu ln(*/
+			return naturalLogarithm(number);
+		}else{
+			*kembali='y';
+			return 0;
+		}	
 	}else{	
 		/*jika operator yang diinputkan tidak sesuai dengan aturan*/
 		//printf("\t\t\tOperator is invalid: %s", op);

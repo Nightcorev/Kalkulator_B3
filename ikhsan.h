@@ -142,15 +142,33 @@ double operasi_trigono(double bilangan1, char* trigono, char* kembali)
     if (strcmp(trigono,"sin(") == 0) { //mengecek apakah operator trigono adalah sin
         result = sinHasil(bilangan1); //mengirim ke modul sinHasil untuk dihitung jika operator trigono adalah sin
     }else if (strcmp(trigono,"cos(") == 0) { //mengecek apakah operator trigono adalah cos
-        result =  cosHasil(bilangan1); //mengirim ke modul sinHasil untuk dihitung jika operator trigono adalah cos
+        result =  cosHasil(bilangan1); //mengirim ke modul cosHasil untuk dihitung jika operator trigono adalah cos
     }else if (strcmp(trigono,"tan(") == 0) { //mengecek apakah operator trigono adalah tan
-        result =  tanHasil(bilangan1); //mengirim ke modul sinHasil untuk dihitung jika operator trigono adalah tan
+    	if(bilangan1== 90||bilangan1== 270||bilangan1== 360){
+    		*kembali='y';
+    	}else{
+ 	        result =  tanHasil(bilangan1); //mengirim ke modul tanHasil untuk dihitung jika operator trigono adalah tan
+		}
     }else if (strcmp(trigono,"csc(") == 0) { //mengecek apakah operator trigono adalah cosec
-        result = cosecHasil(bilangan1); //mengirim ke modul sinHasil untuk dihitung jika operator trigono adalah cosec
+        if(bilangan1== 0||bilangan1== 180||bilangan1== 360){
+    		*kembali='y';
+    	}else{
+    		result =  cosecHasil(bilangan1); //mengirim ke modul cosecHasil untuk dihitung jika operator trigono adalah cosec
+
+		} 
     }else if (strcmp(trigono,"sec(") == 0) { //mengecek apakah operator trigono adalah sec
-        result =  secHasil(bilangan1); //mengirim ke modul sinHasil untuk dihitung jika operator trigono adalah sec
+        if(bilangan1== 90||bilangan1== 270){
+        	*kembali='y';
+    	}else{
+	        result =  secHasil(bilangan1); //mengirim ke modul secHasil untuk dihitung jika operator trigono adalah sec
+		} 
     }else if (strcmp(trigono,"cot(") == 0) { //mengecek apakah operator trigono adalah cotan
-        result =  cotanHasil(bilangan1); //mengirim ke modul sinHasil untuk dihitung jika operator trigono adalah cotan
+    	if(bilangan1== 90||bilangan1== 270||bilangan1== 360){
+    		*kembali='y';
+    	}else{
+    		result =  tanHasil(bilangan1); //mengirim ke modul cotanHasil untuk dihitung jika operator trigono adalah cotan
+
+		}
     }else{
     	*kembali='y'; //mendefinisikan kembali sebagai 'y' agar bisa looping
     	return result; //mengembalikan result
