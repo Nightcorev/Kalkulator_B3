@@ -35,7 +35,7 @@ void menu_kalkulator_scientifik(){
 	printf("\n\t\t\t| Guide :                                            |");
 	printf("\n\t\t\t| 1. Tidak menggunakan spasi                         |");
 	printf("\n\t\t\t| 2. untuk operasi trigonometri                      |");
-	printf("\n\t\t\t|    contohnya seperti berikut : cos(90)             |");
+	printf("\n\t\t\t|    contohnya seperti berikut : sin(90)             |");
 	printf("\n\t\t\t| 3. untuk operasi logaritma                         |");
 	printf("\n\t\t\t|    contohnya seperti berikut : 2log(3)             |");
 	printf("\n\t\t\t| 4. untuk operasi menghitung persentase             |");
