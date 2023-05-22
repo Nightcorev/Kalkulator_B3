@@ -52,12 +52,8 @@ double naturalLogarithm(double number)
 
 double processLogarithm(double number, double base, char *op, char *kembali){
 	if(strcmp(op,"log(")==0){	/*jika operator yang diinputkan yaitu log(*/
-		if (number >= 0 || base >= 0 || base != 1){
-			*kembali='y';
-			return 0;	
-		}else{
 			return logarithm(number,base);	
-		}
+
 	}else if (strcmp(op,"ln(")==0){	
 		if(number!=0){			/*jika operator yang diinputkan yaitu ln(*/
 			return naturalLogarithm(number);
