@@ -33,12 +33,12 @@ double hitung_akar(double n, double a) {
 
     while (d > EPS) {  //akan berjalan selama selisih perkiraan akar (d) lebih besar dari EPS.
         xnmin1 = xn;   //menyimpan nilai perkiraan akar sebelumnya (xn) ke dalam xnmin1.
-        xn = xnmin1 - ((xnmin1 * xnmin1 - (n / a)) / (2 * xnmin1));  //mengupdate nilai perkiraan akar xn menggunakan rumus iterasi metode Newton-Raphson.
+        xn = xnmin1 - ((xnmin1 * xnmin1 - n) / (2 * xnmin1));  //rumus iterasi metode Newton-Raphson untuk menghitung perkiraan baru dari akar.
         d = fabs(xn - xnmin1);  //Menghitung selisih antara perkiraan akar yang baru dengan perkiraan akar sebelumnya (d).
         ++i;          //meningkatkan nilai variabel i sebagai penghitungan iterasi yang telah dilakukan.
     }
     
-    return xn * a;   //Mengembalikan hasil akar kuadrat yang telah dikalikan dengan a.
+    return xn;   //hasil perkiraan akar yang paling akurat dikembalikan sebagai nilai dari fungsi hitung_akar.
 }
 
 
